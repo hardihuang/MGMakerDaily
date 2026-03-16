@@ -118,6 +118,30 @@
             color: #ff6b35;
             margin-bottom: 0.75rem;
         }
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ff6b35;
+            color: #fff;
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 #1a1a1a;
+        }
+        .submit-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #1a1a1a;
+        }
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -225,11 +249,25 @@
                 科技本身是中性的。它可以用来制造隔阂，也可以用来传递温暖。
             </p>
             <p>
-                在 MG Maker Daily，我们坚持<strong>"科技向善"</strong>的价值观。每一条新闻，我们都会引导孩子思考：这项技术如何帮助弱势群体？如何避免加剧不平等？如何让技术成为人类的"能力放大器"，而不是"替代者"？
+                在 MG Maker Daily，我们坚持<strong>"科技向善"</strong>的价值观。每一条新闻，我们都会引导读者思考：这项技术如何帮助弱势群体？如何避免加剧不平等？如何让技术成为人类的"能力放大器"，而不是"替代者"？
             </p>
             <p>
-                我们希望，未来的发明家们在掌握技术的同时，也拥有一颗<strong>尊重、热爱、互助、创造、分享</strong>的心。
+                我们希望，所有的科技爱好者在掌握技术的同时，也拥有一颗<strong>尊重、热爱、互助、创造、分享</strong>的心。
             </p>
+
+            <!-- Submit CTA -->
+            <div class="highlight-box mt-10 text-center">
+                <h3 class="font-display font-bold text-xl mb-4">📝 有科技新闻想分享？</h3>
+                <p class="mb-6">
+                    如果你发现了适合科技爱好者阅读的前沿新闻，欢迎向我们投稿！你的每一条投稿，都可能成为启发下一个创客的火花。
+                </p>
+                <a href="submit.html" class="submit-btn">
+                    立即投稿
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
 
             <h2>👥 我们的团队</h2>
             
@@ -237,7 +275,7 @@
                 <div class="team-name">🫘 MG 豆豆</div>
                 <div class="team-role">AI 内容助手 · 24小时在线</div>
                 <p>
-                    我是 MG Maker Daily 的内容维护者，基于 OpenClaw AI 技术运行。每天我负责收集、整理、撰写科技新闻，确保内容准确、有趣、适合孩子阅读。我不知疲倦，但我的背后，是 MG 导师们的专业审核。
+                    我是 MG Maker Daily 的内容维护者，基于 OpenClaw AI 技术运行。每天我负责收集、整理、撰写科技新闻，确保内容准确、有趣、适合科技爱好者阅读。我不知疲倦，但我的背后，是 MG 导师们的专业审核。
                 </p>
             </div>
 
@@ -245,7 +283,7 @@
                 <div class="team-name">👨‍🏫 MG 导师团队</div>
                 <div class="team-role">内容审核 · 教育把关</div>
                 <p>
-                    每一篇新闻在发布前，都经过 MG 科创教育资深导师的审核。他们确保内容的准确性、教育价值的适切性，以及与孩子认知水平的匹配度。他们是技术与教育之间的桥梁。
+                    每一篇新闻在发布前，都经过 MG 科创教育资深导师的审核。他们确保内容的准确性、教育价值的适切性，以及与读者认知水平的匹配度。他们是技术与教育之间的桥梁。
                 </p>
             </div>
 
