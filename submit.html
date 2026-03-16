@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafaf8;
+            color: #1a1a1a;
+        }
+        .hand-drawn {
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .hand-drawn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+        .hand-drawn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #1a1a1a;
+        }
+        .nav-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-pill {
+            border: 2px solid #1a1a1a;
+            background: #fff;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-pill:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .nav-pill.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        @media (min-width: 1024px) {
+            .nav-scroll {
+                overflow-x: visible;
+                flex-wrap: wrap;
+            }
+        }
+        .date-stamp {
+            font-family: 'Courier Prime', monospace;
+            border: 2px solid #1a1a1a;
+            padding: 8px 16px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            background: #fff;
+        }
+        .content-section h2 {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .content-section h3 {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #ff6b35;
+        }
+        .content-section p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border-left: 4px solid #ff6b35;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ff6b35;
+            color: #fff;
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 #1a1a1a;
+        }
+        .submit-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #1a1a1a;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Courier Prime', monospace;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-bottom: 1px solid #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .back-link:hover {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 2px 6px;
+        }
+        .category-pill {
+            border: 1.5px solid currentColor;
+            padding: 2px 10px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">
+                        M
+                    </a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">
+                    投稿
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <div class="nav-scroll">
+                <a href="index.html" class="nav-pill">← 返回首页</a>
+                <span class="nav-pill active">📝 投稿</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Hero Section -->
+        <div class="mb-12 text-center">
+            <h1 class="font-display font-bold text-4xl leading-tight mb-6">
+                👋 你好，未来的科技传播者！
+            </h1>
+            <div class="highlight-box">
+                <p class="text-lg leading-relaxed">
+                    感谢你关注 MG Maker Daily！我们是一个面向青少年（初高中生）的科技新闻平台，致力于将最前沿的科技动态转化为有趣、有温度、有启发性的内容。
+                </p>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content-section">
+            <h2>🎯 我们在寻找什么样的内容？</h2>
+            
+            <div class="hand-drawn bg-white p-6 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">🚀</span>
+                        <div>
+                            <strong class="font-display">前沿性</strong>
+                            <p class="text-sm text-muted mt-1">最新的科技动态，发生在近 1-2 周内</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">🧒</span>
+                        <div>
+                            <strong class="font-display">适龄性</strong>
+                            <p class="text-sm text-muted mt-1">适合 12-18 岁青少年理解</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">🔧</span>
+                        <div>
+                            <strong class="font-display">硬核性</strong>
+                            <p class="text-sm text-muted mt-1">机械、电子、编程、AI、机器人等创客领域</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">💡</span>
+                        <div>
+                            <strong class="font-display">启发性</strong>
+                            <p class="text-sm text-muted mt-1">能引发思考，与科技向善理念结合</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>📋 投稿指南</h2>
+            <p>
+                如果你发现了<strong>适合孩子阅读的科技新闻</strong>——无论是 AI 突破、机器人创新、硬件新品，还是编程技术、科学发现——欢迎向我们投稿！
+            </p>
+
+            <h3>推荐关注来源</h3>
+            <div class="hand-drawn bg-white p-5 mb-6">
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2">
+                        <span class="category-pill text-accent">国际</span>
+                        MIT Technology Review、IEEE Spectrum、Hackaday
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="category-pill text-accent">国内</span>
+                        机器之心、量子位、果壳、极客公园
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="category-pill text-accent">官方</span>
+                        OpenAI Blog、Boston Dynamics、Raspberry Pi、Arduino
+                    </li>
+                </ul>
+            </div>
+
+            <h3>投稿内容要求</h3>
+            <div class="hand-drawn bg-white p-5 mb-6">
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-2">
+                        <span class="text-accent font-bold">1.</span>
+                        <span><strong>新闻标题</strong> - 原文标题</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-accent font-bold">2.</span>
+                        <span><strong>原文链接</strong> - 新闻的原始 URL</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-accent font-bold">3.</span>
+                        <span><strong>新闻分类</strong> - AI / 机器人 / 硬件 / 编程 / 航天 / 生物 / 新能源 / OpenClaw</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-accent font-bold">4.</span>
+                        <span><strong>核心摘要</strong> - 用 2-3 句话概括新闻亮点（孩子能听懂）</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-accent font-bold">5.</span>
+                        <span><strong>为什么适合 MG Daily？</strong> - 这条新闻对青少年有什么价值？</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-accent font-bold">6.</span>
+                        <span><strong>启发问题</strong>（可选）- 你觉得可以问孩子什么问题？</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-accent font-bold">7.</span>
+                        <span><strong>相关视频</strong>（可选）- 科普视频或演示视频链接</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <p class="text-center font-display font-bold text-lg mb-2">
+                    ✨ 你的每一条投稿，都可能成为启发下一个少年创客的火花！
+                </p>
+                <p class="text-center text-sm text-muted">
+                    投稿被采用后，我们会注明投稿人姓名，并邀请你加入 MG Daily 创作者社群
+                </p>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mt-10 mb-8">
+                <a href="https://sisy9sdzrms.feishu.cn/share/base/form/shrcnTuXrKwuGr1LWHR5C9YmYUc" target="_blank" class="submit-btn">
+                    📝 立即投稿
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <p class="text-sm text-muted mt-4">
+                    点击按钮跳转到飞书多维表格投稿表单
+                </p>
+            </div>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="mt-12 pt-8 border-t-2 border-ink/20 text-center">
+            <a href="index.html" class="back-link">
+                ← 返回首页，浏览更多科技新闻
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm text-muted">
+                    MG Maker Daily — 给小小创客的科技新闻
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">首页</a>
+                    <a href="about.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">关于我们</a>
+                    <a href="submit.html" class="font-mono text-sm text-accent hover:text-ink transition-colors">投稿</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
