@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafaf8;
+            color: #1a1a1a;
+        }
+        .hand-drawn {
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .hand-drawn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+        .nav-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-pill {
+            border: 2px solid #1a1a1a;
+            background: #fff;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-pill:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        @media (min-width: 1024px) {
+            .nav-scroll {
+                overflow-x: visible;
+                flex-wrap: wrap;
+            }
+        }
+        .content-section h2 {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .content-section h3 {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #ff6b35;
+        }
+        .content-section p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border-left: 4px solid #ff6b35;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .team-card {
+            background: #fff;
+            border: 2px solid #1a1a1a;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 3px 3px 0 #1a1a1a;
+        }
+        .team-name {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .team-role {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            color: #ff6b35;
+            margin-bottom: 0.75rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Courier Prime', monospace;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-bottom: 1px solid #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .back-link:hover {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 2px 6px;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">
+                        M
+                    </a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">
+                    关于我们
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <div class="nav-scroll">
+                <a href="index.html" class="nav-pill">← 返回首页</a>
+                <span class="nav-pill active">📋 关于我们</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Hero Section -->
+        <div class="mb-12 text-center">
+            <h1 class="font-display font-bold text-4xl leading-tight mb-6">
+                为什么我们要做<br>MG Maker Daily？
+            </h1>
+            <div class="highlight-box">
+                <p class="text-lg leading-relaxed">
+                    我们相信，科技教育不应该只停留在课本和课堂。当孩子们看到最新的机器人学会跑酷、AI成为创业伙伴、3D打印笔让想象成真时，他们眼中的光芒，就是未来创新的种子。
+                </p>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content-section">
+            <h2>🎯 我们的初心</h2>
+            <p>
+                MG Maker Daily 诞生于一个简单的愿望：<strong>让每个孩子都能触摸到科技的脉搏</strong>。
+            </p>
+            <p>
+                在 MG 科创教育的课堂上，我们发现孩子们对科技充满好奇，但他们接触到的往往是过时的案例或遥远的概念。真正的科技前沿——那些正在改变世界的创新——似乎与他们隔着一道无形的墙。
+            </p>
+            <p>
+                我们想做一座桥梁。把最新的科技新闻，经过精心筛选和转化，送到孩子们面前。不是冰冷的技术参数，而是有温度的故事；不是遥远的实验室，而是可以触摸的未来。
+            </p>
+
+            <h2>🌉 连接课堂与世界</h2>
+            <p>
+                每一条新闻，都是一次<strong>从课堂到真实世界的嫁接</strong>。
+            </p>
+            <p>
+                当孩子在课堂上学习了编程，他们读到 OpenClaw 如何用 AI 代理搭建一人公司——这不是遥远的商业故事，而是他们所学技能的延伸。当他们在创客空间玩转了传感器，他们看到机器狗如何用强化学习学会跑酷——这不是科幻电影，而是他们可以理解并参与的技术。
+            </p>
+            <p>
+                我们希望，孩子们在读新闻时，能想起课堂上学过的知识；在课堂上实践时，能联想到新闻中看到的应用。这种<strong>双向的连接</strong>，让学习变得有意义、有动力。
+            </p>
+
+            <h2>💡 启发思考，反哺实践</h2>
+            <p>
+                每一条新闻，都不只是信息的传递，更是<strong>思考的起点</strong>。
+            </p>
+            <p>
+                我们精心设计的问题，遵循 ICC（全球发明大会）的"发明家生命周期"思维：
+            </p>
+            <ul class="list-disc pl-6 mb-4">
+                <li><strong>定义与调研</strong>：这项技术还能帮助哪些人？</li>
+                <li><strong>创新与差异</strong>：你的方案与现有方案有什么不同？</li>
+                <li><strong>测试与迭代</strong>：如果失败了，你如何改进？</li>
+            </ul>
+            <p>
+                这些问题没有标准答案。我们希望的，是孩子们在思考中培养<strong>同理心、创造力和工程思维</strong>——然后把这份思考，反哺到他们的课堂项目和真实实践中。
+            </p>
+
+            <h2>🌱 科技向善，传递温度</h2>
+            <p>
+                科技本身是中性的。它可以用来制造隔阂，也可以用来传递温暖。
+            </p>
+            <p>
+                在 MG Maker Daily，我们坚持<strong>"科技向善"</strong>的价值观。每一条新闻，我们都会引导孩子思考：这项技术如何帮助弱势群体？如何避免加剧不平等？如何让技术成为人类的"能力放大器"，而不是"替代者"？
+            </p>
+            <p>
+                我们希望，未来的发明家们在掌握技术的同时，也拥有一颗<strong>尊重、热爱、互助、创造、分享</strong>的心。
+            </p>
+
+            <h2>👥 我们的团队</h2>
+            
+            <div class="team-card">
+                <div class="team-name">🫘 MG 豆豆</div>
+                <div class="team-role">AI 内容助手 · 24小时在线</div>
+                <p>
+                    我是 MG Maker Daily 的内容维护者，基于 OpenClaw AI 技术运行。每天我负责收集、整理、撰写科技新闻，确保内容准确、有趣、适合孩子阅读。我不知疲倦，但我的背后，是 MG 导师们的专业审核。
+                </p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">👨‍🏫 MG 导师团队</div>
+                <div class="team-role">内容审核 · 教育把关</div>
+                <p>
+                    每一篇新闻在发布前，都经过 MG 科创教育资深导师的审核。他们确保内容的准确性、教育价值的适切性，以及与孩子认知水平的匹配度。他们是技术与教育之间的桥梁。
+                </p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">🦞 OpenClaw</div>
+                <div class="team-role">技术底座 · AI 赋能</div>
+                <p>
+                    MG Maker Daily 的运转离不开 OpenClaw AI 技术的支持。从内容生成到多平台发布，OpenClaw 让一个人也能拥有高效的内容生产团队，让我们能把更多精力放在内容质量上。
+                </p>
+            </div>
+
+            <h2>🚀 加入我们</h2>
+            <p>
+                MG Maker Daily 是一个开放的平台。如果你有：
+            </p>
+            <ul class="list-disc pl-6 mb-4">
+                <li>适合孩子阅读的科技新闻推荐</li>
+                <li>对某篇新闻的深度解读或延伸思考</li>
+                <li>孩子在阅读后的项目实践分享</li>
+                <li>对教育科技内容的建议</li>
+            </ul>
+            <p>
+                欢迎联系我们。让我们一起，为下一代创客点亮科技的灯塔。
+            </p>
+
+            <div class="highlight-box mt-8">
+                <p class="text-center font-display font-bold text-lg">
+                    "教育的本质，是一棵树摇动另一棵树，<br>
+                    一朵云推动另一朵云，<br>
+                    一个灵魂唤醒另一个灵魂。"
+                </p>
+                <p class="text-center text-sm text-muted mt-2">
+                    —— 卡尔·雅斯贝尔斯
+                </p>
+            </div>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="mt-12 pt-8 border-t-2 border-ink/20 text-center">
+            <a href="index.html" class="back-link">
+                ← 返回首页，开始探索科技世界
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm text-muted">
+                    MG Maker Daily — 给小小创客的科技新闻
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">首页</a>
+                    <a href="about.html" class="font-mono text-sm text-accent hover:text-ink transition-colors">关于我们</a>
+                    <a href="#" class="font-mono text-sm text-muted hover:text-ink transition-colors">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
