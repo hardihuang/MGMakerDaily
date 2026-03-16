@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特斯拉 Optimus 人形机器人学会自主行走 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'robot': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafaf8;
+            color: #1a1a1a;
+        }
+        .hand-drawn {
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .hand-drawn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+        .category-pill {
+            border: 1.5px solid currentColor;
+            padding: 2px 10px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        .date-stamp {
+            font-family: 'Courier Prime', monospace;
+            border: 2px solid #1a1a1a;
+            padding: 8px 16px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            background: #fff;
+        }
+        .nav-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-pill {
+            border: 2px solid #1a1a1a;
+            background: #fff;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-pill:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .nav-pill.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        @media (min-width: 1024px) {
+            .nav-scroll {
+                overflow-x: visible;
+                flex-wrap: wrap;
+            }
+        }
+        .article-content h2 {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        .article-content h3 {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #ff6b35;
+        }
+        .article-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        .article-content ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        .article-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+        .article-content strong {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .keyword-box {
+            background: #fff;
+            border: 2px solid #1a1a1a;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 3px 3px 0 #1a1a1a;
+        }
+        .keyword-title {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: #ff6b35;
+        }
+        .question-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border: 2px solid #ff6b35;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .question-title {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Courier Prime', monospace;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-bottom: 1px solid #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .back-link:hover {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 2px 6px;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">
+                        M
+                    </a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">
+                    2026.03.17
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <div class="nav-scroll">
+                <a href="index.html" class="nav-pill">← 返回首页</a>
+                <span class="nav-pill active">🤖 机器人</span>
+                <span class="nav-pill">🧠 AI</span>
+                <span class="nav-pill">⚙️ 机械</span>
+                <span class="nav-pill">🔧 智能硬件</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill text-robot">🤖 机器人</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-03-17</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">
+                特斯拉 Optimus 人形机器人学会自主行走：离走进家庭还有多远？
+            </h1>
+            <p class="text-muted text-lg leading-relaxed">
+                特斯拉的 Optimus 人形机器人又进化了！它现在可以自主行走、爬楼梯、甚至搬运物体。马斯克说，未来它可能帮人类做家务、照顾老人，甚至去火星工作。但问题是：我们真的要让它走进家庭吗？
+            </p>
+        </div>
+
+        <!-- Video Embed -->
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe 
+                    src="https://player.bilibili.com/player.html?bvid=BV1CHcDzPE1F&page=1&high_quality=1&danmaku=0&autoplay=0" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0" 
+                    allowfullscreen
+                    style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">
+                📺 视频：<a href="https://b23.tv/nrL6isz" target="_blank" class="external-link">特斯拉人形机器人V3发布前夜，核心供应商都有谁？- 哔哩哔哩</a>
+            </p>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+            <h2>【🔍 前沿聚焦】</h2>
+            
+            <p>
+                传统工业机器人只能在固定环境工作，无法适应复杂的家庭场景。人形机器人虽然概念火热，但平衡性、灵活性、安全性都是巨大挑战。之前很多公司的机器人都只能在实验室里"表演"，无法真正实用。
+            </p>
+            
+            <p>
+                特斯拉利用其在自动驾驶领域积累的 AI 技术，让 Optimus 学会了自主导航和环境感知。它使用摄像头"看到"周围环境，通过神经网络实时计算步伐和姿态。最新视频中，它可以在不平整的地面上稳定行走，甚至能单脚站立。
+            </p>
+            
+            <p>
+                如果技术成熟，人形机器人可以帮助老年人起居、做家务、甚至陪伴孤独的人。在危险环境中，它可以代替人类工作。但这也引发了担忧：机器人会抢走人类的工作吗？我们该如何与它们相处？
+            </p>
+
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 核心科技关键词</div>
+                <h3>端到端神经网络 (End-to-End Neural Network)</h3>
+                <p>
+                    一种 AI 技术，输入原始数据（如摄像头画面），直接输出结果（如动作指令），不需要人工设计中间步骤。就像人看到球飞来，不需要计算抛物线，直接伸手去接。
+                </p>
+            </div>
+
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li>
+                    <strong>定义与理解：</strong>除了家庭和工厂，人形机器人还能帮助哪些特定人群？（比如残障人士、独居老人、偏远地区医生）
+                </li>
+                <li>
+                    <strong>创新与差异：</strong>相比于扫地机器人和工业机器人，人形机器人最大的优势是什么？它必须"像人"吗？
+                </li>
+                <li>
+                    <strong>测试与优化：</strong>如果 Optimus 在你家帮忙时打碎了花瓶，你会如何改进它的设计来避免类似事故？
+                </li>
+            </ul>
+
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    💬 留给你的问题：科技向善
+                </div>
+                <p>
+                    当人形机器人可以做饭、打扫、甚至陪伴聊天，你会愿意让它成为家庭一员吗？如果它越来越像人类，我们该如何区分"工具"和"伙伴"？如果机器人可以替代人类做所有家务，这是解放人类，还是让人类变得懒惰？
+                </p>
+            </div>
+
+            <!-- Original Source -->
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://www.tesla.com/blog/optimus-progress" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">
+                    Tesla Optimus Humanoid Robot: Latest Progress Update →
+                </a>
+                <div class="text-sm text-muted">特斯拉 Optimus 人形机器人：最新进展更新</div>
+                <div class="font-mono text-xs text-muted mt-2">Tesla Blog</div>
+            </div>
+        </article>
+
+        <!-- Back to Home -->
+        <div class="mt-12 pt-8 border-t-2 border-ink/20">
+            <a href="index.html" class="back-link">
+                ← 返回首页，查看更多科技新闻
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm text-muted">
+                    MG Maker Daily — 给小小创客的科技新闻
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">首页</a>
+                    <a href="about.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">关于我们</a>
+                    <a href="submit.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">投稿</a>
+                    <a href="https://github.com/hardihuang/MGMakerDaily" target="_blank" class="font-mono text-sm text-muted hover:text-ink transition-colors">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
