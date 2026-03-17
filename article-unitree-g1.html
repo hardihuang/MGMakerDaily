@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇树科技G1人形机器人量产：9.9万元起，机器人走进千家万户 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'robot': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-scroll { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .nav-pill.active { background: #1a1a1a; color: #fff; }
+        @media (min-width: 1024px) { .nav-scroll { overflow-x: visible; flex-wrap: wrap; } }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.03.17</div>
+            </div>
+        </div>
+    </header>
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <div class="nav-scroll">
+                <a href="index.html" class="nav-pill">← 返回首页</a>
+                <span class="nav-pill active">🤖 机器人</span>
+                <span class="nav-pill">⚙️ 机械</span>
+                <span class="nav-pill">🔌 电子</span>
+                <span class="nav-pill">💻 编程</span>
+                <span class="nav-pill">🧠 AI</span>
+                <span class="nav-pill">🔧 智能硬件</span>
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <div class="mb-8">
+            <span class="category-pill text-robot">🤖 机器人</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-03-17</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">宇树科技G1人形机器人量产：9.9万元起，机器人走进千家万户</h1>
+            <p class="text-muted text-lg leading-relaxed">2026年2月，宇树科技宣布人形机器人G1开始量产，售价9.9万元起。这是国内首款面向科研和教育市场的量产人形机器人。</p>
+        </div>
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1xx421C7kC&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;"></iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">📺 视频：<a href="https://www.bilibili.com/video/BV1xx421C7kC" target="_blank" class="external-link">10万元的宇树G1有用吗？开箱评测！- 哔哩哔哩</a></p>
+        </div>
+        <article class="article-content">
+            <h2>【前沿聚焦】</h2>
+            <p>人形机器人一直是科幻电影里的主角，但现实中它们大多停留在实验室阶段，价格动辄上百万，普通人根本买不起。这让很多想学习机器人技术的学生和爱好者望而却步。</p>
+            <p>2026年2月，宇树科技宣布<strong>G1人形机器人开始量产</strong>，售价仅<strong>9.9万元起</strong>！这相当于一辆普通家用轿车的价格。G1身高1.27米，体重35公斤，能跑能跳，还能被推倒后自己站起来。它搭载了高性能关节电机和AI控制系统，可以完成各种复杂动作。</p>
+            <p>更重要的是，G1面向科研和教育市场开放，学校、实验室、创客空间都可以购买。这意味着学生可以亲手操作真正的人形机器人，学习机器人技术。人形机器人终于从"遥不可及"变成了"触手可及"。</p>
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 本期科技关键词</div>
+                <h3>人形机器人 / 自由度 (Humanoid Robot / Degrees of Freedom)</h3>
+                <p>人形机器人是模仿人类外形和动作的机器人。自由度（Degrees of Freedom，简称DOF）是指机器人关节可以独立运动的方向数量。比如人的手臂有3个自由度：肩膀可以前后、左右、旋转运动。G1有23个自由度，意味着它可以做出非常灵活的动作，甚至能完成人类难以完成的姿势。</p>
+            </div>
+            <h2>【💡 创科启发：ICC思维预演】</h2>
+            <p>如果你准备带着"人形机器人应用方案"参加下一届全球发明大会（ICC），请按照标准的发明历程，在大脑中完成以下预演：</p>
+            <ul>
+                <li><strong>定义与理解：</strong>除了科研和教育，9.9万元的G1机器人还能
