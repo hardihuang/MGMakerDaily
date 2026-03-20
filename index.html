@@ -617,28 +617,25 @@
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Filter articles
+                // Filter articles - hide both the link and article completely
                 articleCards.forEach(card => {
                     const article = card.querySelector('article');
                     if (filter === 'all') {
-                        card.style.display = 'block';
+                        card.style.cssText = 'display: block !important;';
                         if (article) {
-                            article.style.display = 'block';
-                            article.style.visibility = 'visible';
+                            article.style.cssText = 'display: block !important;';
                         }
                     } else {
                         const category = card.getAttribute('data-category');
                         if (category === filter) {
-                            card.style.display = 'block';
+                            card.style.cssText = 'display: block !important;';
                             if (article) {
-                                article.style.display = 'block';
-                                article.style.visibility = 'visible';
+                                article.style.cssText = 'display: block !important;';
                             }
                         } else {
-                            card.style.display = 'none';
+                            card.style.cssText = 'display: none !important;';
                             if (article) {
-                                article.style.display = 'none';
-                                article.style.visibility = 'hidden';
+                                article.style.cssText = 'display: none !important;';
                             }
                         }
                     }
