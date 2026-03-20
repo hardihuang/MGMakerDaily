@@ -619,23 +619,27 @@
                 
                 // Filter articles
                 articleCards.forEach(card => {
+                    const article = card.querySelector('article');
                     if (filter === 'all') {
                         card.style.display = 'block';
-                        card.style.height = 'auto';
-                        card.style.marginBottom = '';
-                        card.style.overflow = 'visible';
+                        if (article) {
+                            article.style.display = 'block';
+                            article.style.visibility = 'visible';
+                        }
                     } else {
                         const category = card.getAttribute('data-category');
                         if (category === filter) {
                             card.style.display = 'block';
-                            card.style.height = 'auto';
-                            card.style.marginBottom = '';
-                            card.style.overflow = 'visible';
+                            if (article) {
+                                article.style.display = 'block';
+                                article.style.visibility = 'visible';
+                            }
                         } else {
                             card.style.display = 'none';
-                            card.style.height = '0';
-                            card.style.marginBottom = '0';
-                            card.style.overflow = 'hidden';
+                            if (article) {
+                                article.style.display = 'none';
+                                article.style.visibility = 'hidden';
+                            }
                         }
                     }
                 });
