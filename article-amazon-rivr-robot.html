@@ -80,6 +80,20 @@
             background: #1a1a1a;
             color: #fff;
         }
+        @media (min-width: 1024px) {
+            .nav-scroll {
+                overflow-x: visible;
+                flex-wrap: wrap;
+            }
+        }
+        .date-stamp {
+            font-family: 'Courier Prime', monospace;
+            border: 2px solid #1a1a1a;
+            padding: 8px 16px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            background: #fff;
+        }
         .article-content h2 {
             font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
             font-weight: 700;
@@ -128,25 +142,35 @@
 <body class="font-body min-h-screen">
     <!-- Header -->
     <header class="border-b-2 border-ink">
-        <div class="max-w-5xl mx-auto px-6 py-6">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="font-display font-bold text-2xl tracking-tight">MG Maker Daily</a>
-                <div class="font-mono text-sm text-muted">每日创客科技新闻</div>
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">
+                        M
+                    </a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">
+                    2026.03.20
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="border-b-2 border-ink bg-white">
-        <div class="max-w-5xl mx-auto px-6 py-4">
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
             <div class="nav-scroll">
-                <a href="index.html" class="nav-pill">全部</a>
-                <a href="index.html#ai" class="nav-pill">AI</a>
-                <a href="index.html#robot" class="nav-pill active">机器人</a>
-                <a href="index.html#hardware" class="nav-pill">硬件</a>
-                <a href="index.html#space" class="nav-pill">航天</a>
-                <a href="index.html#programming" class="nav-pill">编程</a>
-                <a href="about.html" class="nav-pill">关于</a>
+                <a href="index.html" class="nav-pill">← 返回首页</a>
+                <span class="nav-pill active">🤖 机器人</span>
+                <span class="nav-pill">⚙️ 机械</span>
+                <span class="nav-pill">🔌 电子</span>
+                <span class="nav-pill">💻 编程</span>
+                <span class="nav-pill">🧠 AI</span>
+                <span class="nav-pill">🔧 智能硬件</span>
             </div>
         </div>
     </nav>
@@ -196,4 +220,35 @@
             <ul>
                 <li><strong>定义与调研：</strong>除了快递配送，自主配送机器人还能帮助哪些特定人群？（比如独居老人、残障人士、医院病人、校园学生）他们最需要机器人帮他们配送什么物品？</li>
                 <li><strong>创新与差异：</strong>相比于传统快递员和无人机配送，地面配送机器人有哪些独特的优势和局限性？在什么场景下机器人配送比人工更高效？</li>
-                <li><strong>测试
+                <li><strong>测试与优化：</strong>如果你的配送机器人在雨天配送时经常打滑摔倒，你会如何改进它的设计？（改进轮胎材质？增加防滑算法？调整重心设计？）</li>
+            </ul>
+
+            <div class="question-box">
+                <div class="question-title">💬 留给你的问题：科技向善</div>
+                <p>当配送机器人可以24小时不间断工作，不会累、不会抱怨，也不需要工资，这会给社会带来什么影响？作为发明家，你会如何平衡技术进步和快递员就业之间的关系？</p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://www.ithome.com/0/930/816.htm" target="_blank" class="external-link">亚马逊收购自主配送机器人初创公司 Rivr，强化物流"最后一公里"自动化 - IT之家 →</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <p class="font-display font-bold text-lg">MG Maker Daily</p>
+                    <p class="text-muted text-sm mt-1">给小小创客的科技新闻 · 每天3分钟</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-muted text-sm">内容由 @MG豆豆 整理</p>
+                    <p class="text-muted text-sm mt-1">© 2026 MG Maker Daily</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

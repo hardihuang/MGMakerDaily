@@ -1,0 +1,144 @@
+# OpenClaw Cron 定时任务配置
+# MG Maker Daily - 晨间新闻自动化
+
+cron_jobs:
+  # 主任务：每天早上7点执行
+  - name: "mg-daily-morning-news"
+    schedule: "0 7 * * *"  # 每天7:00
+    timezone: "Asia/Shanghai"
+    command: |
+      # 执行晨间新闻工作流
+      echo "Starting MG Daily morning workflow..."
+      
+      # 步骤1: 检查飞书表格选题
+      echo "[Step 1] Checking Feishu table for pending topics..."
+      
+      # 调用飞书 API 获取待发布选题
+      pending_count=$(feishu_bitable_list_records \
+        --app_token="GpMvbgnQta9ISpsywtrca6lTnvb" \
+        --table_id="tbl5cLUFMdhl6b0U" \
+        --filter="状态=选题库" | jq '.records | length')
+      
+      if [ "$pending_count" -eq 0 ]; then
+        echo "No pending topics found. Searching for news..."
+        
+        # 步骤2: 自动搜索前一天科技新闻
+        # 使用 web_search 工具搜索
+        search_results=$(web_search \
+          --query="$(date -d yesterday +%Y-%m-%d) 科技新闻 AI 机器人 硬件" \
+          --count=5 \
+          --freshness="day")
+        
+        # 选择最佳新闻添加到飞书表格
+        # 创建新记录，状态设为"创作中"
+        feishu_bitable_create_record \
+          --app_token="GpMvbgnQta9ISpsywtrca6lTnvb" \
+          --table_id="tbl5cLUFMdhl6b0U" \
+          --fields="{
+            \"文章标题\": \"$news_title\",
+            \"发布日期\": \"$(date +%Y-%m-%d)\",
+            \"状态\": \"创作中\",
+            \"原文链接\": \"$news_url\"
+          }"
+      fi
+      
+      # 步骤3: 获取第一个"创作中"的选题
+      topic=$(feishu_bitable_list_records \
+        --app_token="GpMvbgnQta9ISpsywtrca6lTnvb" \
+        --table_id="tbl5cLUFMdhl6b0U" \
+        --filter="状态=创作中" \
+        --limit=1)
+      
+      # 步骤4: AI 创作内容（由 MG豆豆 执行）
+      echo "[Step 4] AI generating content..."
+      
+      # 提取需要创作的字段
+      news_title=$(echo $topic | jq -r '.records[0].fields.文章标题')
+      news_url=$(echo $topic | jq -r '.records[0].fields.原文链接')
+      category=$(echo $topic | jq -r '.records[0].fields.文章分类 // "科技"')
+      
+      # 生成各字段内容
+      # 这里调用 AI 模型生成
+      # 生成完成后更新飞书表格
+      
+      feishu_bitable_update_record \
+        --app_token="GpMvbgnQta9ISpsywtrca6lTnvb" \
+        --table_id="tbl5cLUFMdhl6b0U" \
+        --record_id="$record_id" \
+        --fields="{
+          \"核心摘要\": \"$generated_summary\",
+          \"前沿聚焦\": \"$generated_focus\",
+          \"技术原理\": \"$generated_principle\",
+          \"应用场景\": \"$generated_application\",
+          \"科技关键词\": \"$generated_keyword\",
+          \"关键词解释\": \"$generated_keyword_desc\",
+          \"ICC问题1_定义与理解\": \"$generated_icc1\",
+          \"ICC问题2_原创与竞品\": \"$generated_icc2\",
+          \"ICC问题3_测试与优化\": \"$generated_icc3\",
+          \"思考问题\": \"$generated_question\",
+          \"文章正文\": \"$generated_fulltext\",
+          \"状态\": \"待审核\"
+        }"
+      
+      # 步骤5: 发送审核通知
+      echo "[Step 5] Sending review notification..."
+      
+      message send \
+        --target "黄昊" \
+        --content "📰 MG Daily 晨间新闻待审核
+
+日期: $(date +%Y-%m-%d)
+标题: $news_title
+分类: $category
+原文: $news_url
+
+AI已完成内容创作，请在飞书表格中审核：
+https://sisy9sdzrms.feishu.cn/base/GpMvbgnQta9ISpsywtrca6lTnvb
+
+审核通过后，回复\"发布\"即可自动上线。"
+    
+    on_success: |
+      echo "Morning workflow completed successfully"
+    
+    on_failure: |
+      echo "Morning workflow failed, sending alert..."
+      message send --target "黄昊" --content "⚠️ MG Daily 晨间任务执行失败，请检查日志"
+
+  # 辅助任务：每小时检查是否有审核通过的待发布文章
+  - name: "mg-daily-publish-check"
+    schedule: "0 * * * *"  # 每小时执行
+    timezone: "Asia/Shanghai"
+    command: |
+      # 检查是否有状态为"已通过"的文章
+      approved_articles=$(feishu_bitable_list_records \
+        --app_token="GpMvbgnQta9ISpsywtrca6lTnvb" \
+        --table_id="tbl5cLUFMdhl6b0U" \
+        --filter="状态=已通过")
+      
+      if [ "$(echo $approved_articles | jq '.records | length')" -gt 0 ]; then
+        echo "Found approved articles, publishing..."
+        
+        # 执行发布脚本
+        /home/admin/.openclaw/workspace/mg-maker-daily/publish-article.sh
+      else
+        echo "No approved articles to publish"
+      fi
+
+# 触发器配置
+triggers:
+  # 当收到特定消息时触发发布
+  - name: "manual-publish-trigger"
+    condition: "message_received && content == '发布'"
+    action: |
+      /home/admin/.openclaw/workspace/mg-maker-daily/publish-article.sh
+
+# 通知配置
+notifications:
+  success:
+    channel: feishu
+    target: "黄昊"
+  
+  failure:
+    channel: feishu
+    target: "黄昊"
+    urgent: true
