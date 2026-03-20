@@ -100,6 +100,7 @@
             text-decoration: none;
             color: inherit;
             transition: transform 0.1s ease;
+            cursor: pointer;
         }
         .card-link:hover h2 {
             color: #ff6b35;
@@ -164,6 +165,28 @@
             font-size: 0.75rem;
             color: #6b6b6b;
         }
+        /* Filter animation */
+        .card-link[data-category] {
+            transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.45s ease, margin-bottom 0.45s ease;
+            opacity: 1;
+            transform: scale(1);
+            max-height: 800px;
+            overflow: hidden;
+        }
+        .card-link.card-fade-out {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+        .card-link.card-collapsed {
+            max-height: 0;
+            margin-bottom: 0 !important;
+            padding: 0;
+            pointer-events: none;
+        }
+        .card-link.card-fade-in {
+            opacity: 0;
+            transform: scale(0.96);
+        }
     </style>
 </head>
 <body class="font-body min-h-screen">
@@ -216,8 +239,9 @@
             </div>
         </section>
 
+        <div id="cardsContainer">
         <!-- News Card 1: Amazon Rivr Robot (NEWEST - 2026-03-20) -->
-        <a href="article-amazon-rivr-robot.html" class="card-link" data-category="机器人">
+        <div class="card-link" data-category="机器人" onclick="window.location='article-amazon-rivr-robot.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -254,10 +278,10 @@
                     <a href="https://www.bilibili.com/video/BV1pMPQzCEfw" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 配送机器人技术演示</a>
                 </div>
             </article>
-        </a>
+        </div>
 
         <!-- News Card 2: Unitree G1 (2026-03-17) -->
-        <a href="article-unitree-g1.html" class="card-link" data-category="机器人">
+        <div class="card-link" data-category="机器人" onclick="window.location='article-unitree-g1.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -294,10 +318,10 @@
                     <a href="https://www.bilibili.com/video/BV1wRd5YZEc2" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 宇树G1开箱评测</a>
                 </div>
             </article>
-        </a>
+        </div>
 
         <!-- News Card 3: Physical AI (2026-03-17) -->
-        <a href="article-physical-ai.html" class="card-link" data-category="AI">
+        <div class="card-link" data-category="AI" onclick="window.location='article-physical-ai.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -334,10 +358,10 @@
                     <a href="https://www.bilibili.com/video/BV11LPWzNEkm" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 物理AI科普视频</a>
                 </div>
             </article>
-        </a>
+        </div>
 
         <!-- News Card 3: China Starlink -->
-        <a href="article-china-starlink.html" class="card-link" data-category="航天">
+        <div class="card-link" data-category="航天" onclick="window.location='article-china-starlink.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -374,10 +398,10 @@
                     <a href="https://www.bilibili.com/video/BV1xx421C7kC" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 卫星互联网科普视频</a>
                 </div>
             </article>
-        </a>
+        </div>
 
         <!-- News Card 5: Tesla Optimus (2026-03-17) -->
-        <a href="article-tesla-optimus.html" class="card-link" data-category="机器人">
+        <div class="card-link" data-category="机器人" onclick="window.location='article-tesla-optimus.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -414,10 +438,10 @@
                     <a href="https://b23.tv/nrL6isz" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 特斯拉人形机器人视频</a>
                 </div>
             </article>
-        </a>
+        </div>
 
         <!-- News Card 6: OpenClaw (2026-03-16) -->
-        <a href="article-openclaw-solopreneur.html" class="card-link" data-category="OpenClaw">
+        <div class="card-link" data-category="OpenClaw" onclick="window.location='article-openclaw-solopreneur.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -454,10 +478,10 @@
                     <a href="https://b23.tv/dOdWTcY" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 我用 OpenClaw 搭了一支 AI 团队</a>
                 </div>
             </article>
-        </a>
+        </div>
 
         <!-- News Card 7: Robot Parkour (2026-03-16) -->
-        <a href="article-robot-parkour.html" class="card-link" data-category="机器人">
+        <div class="card-link" data-category="机器人" onclick="window.location='article-robot-parkour.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -494,10 +518,10 @@
                     <a href="https://b23.tv/JolnBCW" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 机器狗行走的秘密</a>
                 </div>
             </article>
-        </a>
+        </div>
 
         <!-- News Card 8: Qwen AI Glasses (2026-03-14) -->
-        <a href="article-qwen-ai-glasses.html" class="card-link" data-category="智能硬件">
+        <div class="card-link" data-category="智能硬件" onclick="window.location='article-qwen-ai-glasses.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -533,7 +557,9 @@
                     <span class="font-mono text-sm text-muted">阅读全文 →</span>
                 </div>
             </article>
-        </a>
+        </div>
+
+        </div>
 
         <!-- Pagination -->
         <div class="mt-12 flex items-center justify-center gap-4">
@@ -564,14 +590,6 @@
     </footer>
 
     <script>
-        // Navigation interaction
-        document.querySelectorAll('.nav-pill').forEach(pill => {
-            pill.addEventListener('click', function() {
-                document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
         // Card click feedback with sound
         document.querySelectorAll('.card-link').forEach(card => {
             card.addEventListener('click', function(e) {
@@ -605,41 +623,80 @@
             });
         });
 
-        // Category Filter Functionality
+        // Category Filter Functionality with smooth animation
         const filterButtons = document.querySelectorAll('#categoryNav .nav-pill');
         const articleCards = document.querySelectorAll('.card-link[data-category]');
-        
+        let filtering = false;
+
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
+                if (filtering) return;
                 const filter = this.getAttribute('data-filter');
-                
+
                 // Update active state
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
-                
-                // Filter articles - hide both the link and article completely
+
+                filtering = true;
+                const container = document.getElementById('cardsContainer');
+                const toHide = [];
+                const toShow = [];
+
                 articleCards.forEach(card => {
-                    const article = card.querySelector('article');
-                    if (filter === 'all') {
-                        card.style.cssText = 'display: block !important;';
-                        if (article) {
-                            article.style.cssText = 'display: block !important;';
-                        }
-                    } else {
-                        const category = card.getAttribute('data-category');
-                        if (category === filter) {
-                            card.style.cssText = 'display: block !important;';
-                            if (article) {
-                                article.style.cssText = 'display: block !important;';
-                            }
-                        } else {
-                            card.style.cssText = 'display: none !important;';
-                            if (article) {
-                                article.style.cssText = 'display: none !important;';
-                            }
-                        }
-                    }
+                    const matches = filter === 'all' || card.getAttribute('data-category') === filter;
+                    const isVisible = !card.classList.contains('card-collapsed');
+                    if (matches && !isVisible) toShow.push(card);
+                    if (!matches && isVisible) toHide.push(card);
                 });
+
+                // Lock container height to prevent pagination/footer jumping
+                container.style.minHeight = container.offsetHeight + 'px';
+
+                // Phase 1: fade out cards that should hide
+                if (toHide.length > 0) {
+                    toHide.forEach(card => card.classList.add('card-fade-out'));
+                    setTimeout(() => {
+                        // Phase 2: collapse height (smooth slide up)
+                        toHide.forEach(card => {
+                            card.classList.add('card-collapsed');
+                        });
+                        // Phase 3: expand + fade in cards that should show
+                        setTimeout(() => {
+                            showCards(toShow);
+                        }, toShow.length > 0 ? 300 : 0);
+                    }, 350);
+                } else {
+                    showCards(toShow);
+                }
+
+                function showCards(cards) {
+                    if (cards.length === 0) { releaseHeight(); return; }
+                    // First expand (still invisible)
+                    cards.forEach(card => {
+                        card.classList.remove('card-collapsed');
+                        card.classList.add('card-fade-in');
+                        card.classList.remove('card-fade-out');
+                    });
+                    // Then fade in after layout settles
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            cards.forEach(card => card.classList.remove('card-fade-in'));
+                            setTimeout(() => { releaseHeight(); }, 350);
+                        });
+                    });
+                }
+
+                function releaseHeight() {
+                    // Smoothly transition minHeight to actual content height
+                    const targetHeight = container.scrollHeight;
+                    container.style.transition = 'min-height 0.4s ease';
+                    container.style.minHeight = targetHeight + 'px';
+                    setTimeout(() => {
+                        container.style.minHeight = '';
+                        container.style.transition = '';
+                        filtering = false;
+                    }, 420);
+                }
             });
         });
     </script>
