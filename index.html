@@ -194,7 +194,7 @@
                 <button class="nav-pill active" data-filter="all">📋 全部</button>
                 <button class="nav-pill" data-filter="机器人">🤖 机器人</button>
                 <button class="nav-pill" data-filter="AI">🧠 AI</button>
-                <button class="nav-pill" data-filter="航天科技">🚀 航天</button>
+                <button class="nav-pill" data-filter="航天">🚀 航天</button>
                 <button class="nav-pill" data-filter="智能硬件">🔧 智能硬件</button>
                 <button class="nav-pill" data-filter="OpenClaw">🦞 OpenClaw</button>
             </div>
@@ -337,11 +337,11 @@
         </a>
 
         <!-- News Card 3: China Starlink -->
-        <a href="article-china-starlink.html" class="card-link" data-category="航天科技">
+        <a href="article-china-starlink.html" class="card-link" data-category="航天">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
-                    <span class="category-pill" style="color: #3b82f6;">🚀 航天科技</span>
+                    <span class="category-pill" style="color: #3b82f6;">🚀 航天</span>
                     <div class="font-mono text-xs text-muted mt-2">2026-03-17</div>
                 </div>
                 
@@ -621,24 +621,21 @@
                 articleCards.forEach(card => {
                     if (filter === 'all') {
                         card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        }, 10);
+                        card.style.height = 'auto';
+                        card.style.marginBottom = '';
+                        card.style.overflow = 'visible';
                     } else {
                         const category = card.getAttribute('data-category');
                         if (category === filter) {
                             card.style.display = 'block';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }, 10);
+                            card.style.height = 'auto';
+                            card.style.marginBottom = '';
+                            card.style.overflow = 'visible';
                         } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
+                            card.style.display = 'none';
+                            card.style.height = '0';
+                            card.style.marginBottom = '0';
+                            card.style.overflow = 'hidden';
                         }
                     }
                 });
