@@ -190,20 +190,13 @@
     <!-- Navigation -->
     <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
         <div class="w-full px-6 py-4">
-            <div class="nav-scroll">
-                <button class="nav-pill active">📋 全部</button>
-                <button class="nav-pill">⚙️ 机械</button>
-                <button class="nav-pill">🔌 电子</button>
-                <button class="nav-pill">💻 编程</button>
-                <button class="nav-pill">📐 SolidWorks</button>
-                <button class="nav-pill">🧠 AI</button>
-                <button class="nav-pill">🦞 OpenClaw</button>
-                <button class="nav-pill">🔧 智能硬件</button>
-                <button class="nav-pill">📱 智能终端</button>
-                <button class="nav-pill">🔷 ESP32</button>
-                <button class="nav-pill">🤖 机器人</button>
-                <button class="nav-pill">🚀 航天</button>
-                <button class="nav-pill">⚡ 新能源</button>
+            <div class="nav-scroll" id="categoryNav">
+                <button class="nav-pill active" data-filter="all">📋 全部</button>
+                <button class="nav-pill" data-filter="机器人">🤖 机器人</button>
+                <button class="nav-pill" data-filter="AI">🧠 AI</button>
+                <button class="nav-pill" data-filter="航天科技">🚀 航天</button>
+                <button class="nav-pill" data-filter="智能硬件">🔧 智能硬件</button>
+                <button class="nav-pill" data-filter="OpenClaw">🦞 OpenClaw</button>
             </div>
         </div>
     </nav>
@@ -224,7 +217,7 @@
         </section>
 
         <!-- News Card 1: Amazon Rivr Robot (NEWEST - 2026-03-20) -->
-        <a href="article-amazon-rivr-robot.html" class="card-link">
+        <a href="article-amazon-rivr-robot.html" class="card-link" data-category="机器人">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -264,7 +257,7 @@
         </a>
 
         <!-- News Card 2: Unitree G1 (2026-03-17) -->
-        <a href="article-unitree-g1.html" class="card-link">
+        <a href="article-unitree-g1.html" class="card-link" data-category="机器人">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -304,7 +297,7 @@
         </a>
 
         <!-- News Card 3: Physical AI (2026-03-17) -->
-        <a href="article-physical-ai.html" class="card-link">
+        <a href="article-physical-ai.html" class="card-link" data-category="AI">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -344,7 +337,7 @@
         </a>
 
         <!-- News Card 3: China Starlink -->
-        <a href="article-china-starlink.html" class="card-link">
+        <a href="article-china-starlink.html" class="card-link" data-category="航天科技">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -384,7 +377,7 @@
         </a>
 
         <!-- News Card 5: Tesla Optimus (2026-03-17) -->
-        <a href="article-tesla-optimus.html" class="card-link">
+        <a href="article-tesla-optimus.html" class="card-link" data-category="机器人">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -424,7 +417,7 @@
         </a>
 
         <!-- News Card 6: OpenClaw (2026-03-16) -->
-        <a href="article-openclaw-solopreneur.html" class="card-link">
+        <a href="article-openclaw-solopreneur.html" class="card-link" data-category="OpenClaw">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -464,7 +457,7 @@
         </a>
 
         <!-- News Card 7: Robot Parkour (2026-03-16) -->
-        <a href="article-robot-parkour.html" class="card-link">
+        <a href="article-robot-parkour.html" class="card-link" data-category="机器人">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -504,7 +497,7 @@
         </a>
 
         <!-- News Card 8: Qwen AI Glasses (2026-03-14) -->
-        <a href="article-qwen-ai-glasses.html" class="card-link">
+        <a href="article-qwen-ai-glasses.html" class="card-link" data-category="智能硬件">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
@@ -609,6 +602,46 @@
                 setTimeout(() => {
                     this.classList.remove('active-click');
                 }, 150);
+            });
+        });
+
+        // Category Filter Functionality
+        const filterButtons = document.querySelectorAll('#categoryNav .nav-pill');
+        const articleCards = document.querySelectorAll('.card-link[data-category]');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update active state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter articles
+                articleCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if (category === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
             });
         });
     </script>
