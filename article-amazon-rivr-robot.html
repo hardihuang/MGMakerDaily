@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚马逊收购配送机器人公司Rivr，物流"最后一公里"迈向全自动化 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'robot': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafaf8;
+            color: #1a1a1a;
+        }
+        .hand-drawn {
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .hand-drawn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+        .category-pill {
+            border: 1.5px solid currentColor;
+            padding: 2px 10px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        .nav-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-pill {
+            border: 2px solid #1a1a1a;
+            background: #fff;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-pill:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .nav-pill.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .article-content h2 {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .article-content p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            color: #1a1a1a;
+        }
+        .article-content ul {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+        .article-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+        .question-box {
+            border: 2px solid #1a1a1a;
+            background: #fff;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 3px 3px 0 #1a1a1a;
+        }
+        .question-title {
+            font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: #ff6b35;
+        }
+        .external-link {
+            color: #ff6b35;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .external-link:hover {
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-5xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="font-display font-bold text-2xl tracking-tight">MG Maker Daily</a>
+                <div class="font-mono text-sm text-muted">每日创客科技新闻</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink bg-white">
+        <div class="max-w-5xl mx-auto px-6 py-4">
+            <div class="nav-scroll">
+                <a href="index.html" class="nav-pill">全部</a>
+                <a href="index.html#ai" class="nav-pill">AI</a>
+                <a href="index.html#robot" class="nav-pill active">机器人</a>
+                <a href="index.html#hardware" class="nav-pill">硬件</a>
+                <a href="index.html#space" class="nav-pill">航天</a>
+                <a href="index.html#programming" class="nav-pill">编程</a>
+                <a href="about.html" class="nav-pill">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill text-robot">机器人</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-03-20</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">亚马逊收购配送机器人公司Rivr，物流"最后一公里"迈向全自动化</h1>
+            <p class="text-muted text-lg leading-relaxed">电商巨头亚马逊宣布完成对机器人初创公司Rivr的收购。Rivr的"四足+轮式"混合结构配送机器人能够在楼梯及复杂地形中灵活移动，亚马逊计划将75%运营流程实现"完全自动化"。</p>
+        </div>
+
+        <!-- Video Embed -->
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe 
+                    src="https://player.bilibili.com/player.html?bvid=BV1pMPQzCEfw&page=1&high_quality=1&danmaku=0&autoplay=0" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0" 
+                    allowfullscreen
+                    style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">
+                📺 视频：<a href="https://www.bilibili.com/video/BV1pMPQzCEfw" target="_blank" class="external-link">自主配送机器人技术演示 - 哔哩哔哩</a>
+            </p>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+            <h2>【🔍 前沿聚焦】</h2>
+            <p>电商巨头亚马逊正在加速推进物流体系的自动化升级。近日，亚马逊宣布已完成对机器人初创公司Rivr的收购。Rivr在2024年8月的一轮融资中估值约为1.1亿美元，该轮融资由亚马逊及其创始人Jeff Bezos旗下投资机构Bezos Expeditions参与。</p>
+            
+            <p>Rivr的配送机器人产品主打"四足+轮式"混合结构设计，能够在楼梯及复杂地形中灵活移动，并刚刚发布了第二代机器人产品。业内普遍认为，此次收购将进一步强化亚马逊旗下物流在"最后一公里"配送环节的自动化能力，从而实现更高效率的物流体系。</p>
+            
+            <p>亚马逊方面表示，此次收购体现了公司在前沿技术研发上的持续投入，目标是提升配送过程的安全性，同时优化配送服务合作伙伴及其员工的整体体验。当前亚马逊正计划将75%运营流程实现"完全自动化"，在此背景下，引入Rivr的移动机器人技术，有望成为其智慧物流布局中的重要一环。</p>
+
+            <h2>【🔑 核心科技关键词】</h2>
+            <p><strong>自主配送机器人 (Autonomous Delivery Robot)</strong>：能够自主导航、避障并完成物品配送任务的智能机器人。它们配备传感器、摄像头和AI算法，可以在复杂环境中自主规划路径，完成从取货到送达的全过程。</p>
+            
+            <p><strong>最后一公里物流 (Last Mile Logistics)</strong>：指从配送中心到最终用户手中的最后一段配送环节。这是物流链中成本最高、效率最低的环节，通常占总物流成本的40%以上，也是自动化技术最能发挥价值的领域。</p>
+
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li><strong>定义与调研：</strong>除了快递配送，自主配送机器人还能帮助哪些特定人群？（比如独居老人、残障人士、医院病人、校园学生）他们最需要机器人帮他们配送什么物品？</li>
+                <li><strong>创新与差异：</strong>相比于传统快递员和无人机配送，地面配送机器人有哪些独特的优势和局限性？在什么场景下机器人配送比人工更高效？</li>
+                <li><strong>测试
