@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英伟达豪掷260亿美元布局AI未来，从"卖铲人"到"造矿主"的战略转型 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family+Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'ai': '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.03.22</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill text-ai">🧠 AI</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-03-22</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">英伟达豪掷260亿美元布局AI未来，从"卖铲人"到"造矿主"的战略转型</h1>
+            <p class="text-muted text-lg leading-relaxed">根据英伟达向美国证券交易委员会（SEC）提交的财务文件，公司将在未来5年累计投入260亿美元（约人民币1900亿元）用于AI大模型开发。这笔巨额投资标志着英伟达正从"AI芯片供应商"向"AI全产业链参与者"转型。</p>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+            <!-- 前沿聚焦 -->
+            <h2>【🔍 前沿聚焦】</h2>
+            <p>在AI淘金热的时代，英伟达一直是那个"卖铲子"的人——无论谁能挖到金子，都需要英伟达的GPU芯片。但这家公司显然不满足于只做工具提供商，它想要亲自下场"挖矿"。</p>
+
+            <p>英伟达正在经历一场深刻的战略转型。除了继续巩固其在AI芯片领域的霸主地位，公司还通过收购等方式积极布局AI基础设施和模型开发。去年底，英伟达斥资200亿美元收购了Groq的LPU技术。Groq的LPU（确定性数据流处理器）与英伟达GPU截然不同，专注于低延迟AI推理，这次收购将增强英伟达在实时AI应用领域的竞争力。</p>
+
+            <p>这笔260亿美元的投资将用于AI全栈布局：从底层的GPU+LPU双芯战略，到框架层的CUDA生态，再到模型层的自主开发大模型，以及应用层的垂直AI解决方案。英伟达正在构建一个"从芯片到应用"的完整AI生态系统。</p>
+
+            <p>对于青少年来说，了解英伟达的战略有助于理解AI产业生态——从硬件到软件，从基础设施到应用层，每个环节都蕴含创新机会。</p>
+
+            <!-- 核心科技关键词 -->
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 核心科技关键词</div>
+                <h3>AI芯片 (AI Chip) / 垂直整合 (Vertical Integration)</h3>
+                <p><strong>AI芯片</strong>是专门为人工智能计算优化的处理器，如英伟达的GPU、Groq的LPU等。不同类型的AI芯片擅长不同的任务：GPU擅长训练大模型，LPU擅长快速推理响应。</p>
+                <p><strong>垂直整合</strong>是指一家公司控制产业链的多个环节，从上游原材料到下游终端产品。英伟达正在从单一的芯片供应商，向涵盖芯片、软件、模型、应用的垂直整合型AI公司转型。</p>
+            </div>
+
+            <!-- ICC 赛事思维预演 -->
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li><strong>定义与调研：</strong>除了游戏显卡和AI芯片，你能调研出英伟达的技术还能帮助哪些行业解决什么问题？（如农业、建筑、艺术）</li>
+                <li><strong>创新与差异：</strong>相比于购买现成的AI服务，企业自己搭建AI基础设施有哪些优缺点？你会如何选择？</li>
+                <li><strong>测试与迭代：</strong>如果你要设计一款新的AI芯片，你会如何确定它的性能指标和测试标准？如何与现有产品（如英伟达GPU）进行公平竞争测试？</li>
+            </ul>
+
+            <!-- 科技向善问题 -->
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    💬 留给你的问题：科技向善
+                </div>
+                <p>当一家公司在AI领域变得越来越强大，掌握从芯片到模型的全产业链，你认为这是好事还是坏事？如何平衡创新激励与市场竞争？作为未来的发明家，你会如何设计一个更开放、更公平的AI生态系统？</p>
+            </div>
+
+            <!-- 原文出处 -->
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://zhuanlan.zhihu.com/p/相关文章" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">英伟达未来5年将投资260亿美元开发AI →</a>
+                <div class="text-sm text-muted">NVIDIA to Invest $26 Billion in AI Development Over 5 Years</div>
+                <div class="font-mono text-xs text-muted mt-2">华尔街见闻 / SEC文件</div>
+            </div>
+        </article>
+
+        <!-- Back Link -->
+        <div class="mt-12 pt-8 border-t-2 border-ink/20">
+            <a href="index.html" class="back-link">← 返回首页，查看更多科技新闻</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-accent text-white flex items-center justify-center font-display font-bold hand-drawn">M</div>
+                    <div>
+                        <div class="font-display font-bold">MG Maker Daily</div>
+                        <div class="text-muted font-mono text-sm">每日创客科技新闻</div>
+                    </div>
+                </div>
+                <div class="text-muted font-mono text-sm">© 2026 MG Maker Daily</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
