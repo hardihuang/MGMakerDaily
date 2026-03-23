@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI算力卷向太空，英伟达黄仁勋称散热是最大挑战 - MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafaf8;
+            color: #1a1a1a;
+        }
+        .hand-drawn {
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+        }
+        .category-pill {
+            border: 1.5px solid currentColor;
+            padding: 2px 10px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        .text-ai { color: #8b5cf6; }
+        .highlight-box {
+            border-left: 3px solid #8b5cf6;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 100%);
+            padding: 14px 18px;
+            margin: 20px 0;
+        }
+        .tech-section {
+            border-left: 3px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+            padding: 14px 18px;
+            margin: 20px 0;
+        }
+        .application-section {
+            border-left: 3px solid #10b981;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
+            padding: 14px 18px;
+            margin: 20px 0;
+        }
+        .keywords-section {
+            border: 2px solid #1a1a1a;
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .keyword-item {
+            margin-bottom: 16px;
+        }
+        .keyword-item:last-child {
+            margin-bottom: 0;
+        }
+        .keyword-term {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+        }
+        .keyword-def {
+            color: #6b6b6b;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+        .icc-section {
+            border: 2px solid #f59e0b;
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .icc-item {
+            margin-bottom: 16px;
+        }
+        .icc-item:last-child {
+            margin-bottom: 0;
+        }
+        .question-box {
+            border: 2px solid #ff6b35;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 107, 53, 0.02) 100%);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .thinking-label {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: #ff6b35;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .source-info {
+            border-top: 1px dashed #ddd;
+            padding-top: 16px;
+            margin-top: 30px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            color: #6b6b6b;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">
+                        M
+                    </div>
+                    <div>
+                        <h1 class="font-display font-bold text-3xl tracking-tight">MG Maker Daily</h1>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <a href="index.html" class="font-mono text-sm border-2 border-ink px-4 py-2 hover:bg-ink hover:text-white transition">← 返回首页</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-8">
+        <article>
+            <!-- Article Header -->
+            <header class="mb-8">
+                <div class="mb-4">
+                    <span class="category-pill text-ai">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-23</div>
+                </div>
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                <h1 class="font-display font-bold text-3xl leading-tight mb-4">AI算力卷向太空，英伟达黄仁勋称散热是最大挑战</h1>
+                <p class="text-muted leading-relaxed">英伟达CEO黄仁勋在All-In Podcast播客节目中公开探讨太空AI数据中心的长期潜力。随着全球AI算力需求呈指数级激增，科技巨头正寻找传统高能耗数据中心之外的替代方案。太空拥有充沛的太阳能与几乎无限的物理空间，但最大技术壁垒是散热——在真空中只能靠辐射散热，需要极其庞大的表面积。英伟达已发布专为太空AI计算打造的Space-1 Vera Rubin模块，THOR芯片已通过防辐射认证。</p>
+            </header>
+
+            <!-- Video Embed -->
+            <div class="mb-8">
+                <div class="hand-drawn bg-white p-2">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1AhFqzoEpe&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="400" style="border-radius: 4px;"></iframe>
+                </div>
+            </div>
+
+            <!-- Article Body -->
+            <div class="prose prose-lg max-w-none">
+                <h2 class="font-display font-bold text-2xl mt-8 mb-4">为什么要把数据中心建到太空？</h2>
+                <p>随着全球AI算力需求呈指数级激增，科技巨头正积极寻找传统高能耗数据中心之外的替代方案。太空数据中心正成为极具吸引力的新方向。</p>
+                <p>太空拥有两大优势：</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>充沛的太阳能</strong>：太空中没有大气层阻挡，太阳能利用率极高</li>
+                    <li><strong>几乎无限的物理空间</strong>：不用担心土地成本和扩建限制</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3 class="font-display font-bold text-lg mb-2">🔍 前沿聚焦</h3>
+                    <p>全球AI算力需求呈指数级激增，科技巨头正积极寻找传统高能耗数据中心之外的替代方案。太空数据中心成为极具吸引力的新方向，太空拥有充沛的太阳能与几乎无限的物理空间。英伟达、马斯克、谷歌等科技巨头都在积极探索太空数据中心的可行性。</p>
+                </div>
+
+                <h2 class="font-display font-bold text-2xl mt-8 mb-4">最大难题：散热</h2>
+                <p>黄仁勋挑明建设太空数据中心存在诸多挑战，<strong>最大技术壁垒就是散热</strong>。</p>
+                <p>在地球上，数据中心主要依靠<strong>传导</strong>和<strong>对流</strong>来散发热量——风扇吹走热空气，或者用水冷系统带走热量。但在真空的太空中，这些常规方法<strong>完全失效</strong>！</p>
+
+                <div class="tech-section">
+                    <h3 class="font-display font-bold text-lg mb-2">💡 技术原理</h3>
+                    <p>在地球上，数据中心主要依靠传导和对流来散发热量；但在真空的太空中，这些常规方法完全失效。太空设备只能依赖"辐射"来散热，这意味着需要极其庞大的表面积才能有效释放热量，导致系统设计极其复杂。此外，高昂的硬件发射与基建成本也是核心的经济制约因素。英伟达CUDA系统已成功部署在部分卫星上，直接用于执行图像处理和AI计算任务。</p>
+                </div>
+
+                <h2 class="font-display font-bold text-2xl mt-8 mb-4">辐射散热：太空唯一的散热方式</h2>
+                <p>太空设备只能依赖<strong>"辐射"</strong>来散热。这是什么意思呢？</p>
+                <p>想象一下，你站在太阳下会感觉热，这是因为太阳通过<strong>热辐射</strong>把热量传递给你。太空中的数据中心也只能通过这种方式散热——把热量以红外线的形式"辐射"出去。</p>
+                <p>但问题是，辐射散热的效率很低，这意味着<strong>需要极其庞大的表面积</strong>才能有效释放热量，从而导致系统设计极其复杂。</p>
+
+                <h2 class="font-display font-bold text-2xl mt-8 mb-4">英伟达的太空布局</h2>
+                <p>尽管困难重重，英伟达目前已经迈出了太空计算的实质性步伐：</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>CUDA系统</strong>已成功部署在部分卫星上，直接用于执行图像处理和AI计算任务</li>
+                    <li>发布专为太空AI计算打造的<strong>Space-1 Vera Rubin模块</strong></li>
+                    <li><strong>THOR芯片</strong>已通过严格的"防辐射认证"</li>
+                </ul>
+
+                <div class="application-section">
+                    <h3 class="font-display font-bold text-lg mb-2">🚀 应用场景</h3>
+                    <ul class="list-disc pl-6">
+                        <li><strong>太空AI计算</strong>：英伟达发布Space-1 Vera Rubin模块，专为太空AI计算打造</li>
+                        <li><strong>在轨数据处理</strong>：直接在太空中完成数据运算，避免将海量数据传回地球</li>
+                        <li><strong>卫星图像处理</strong>：CUDA系统部署在卫星上，直接执行图像处理和AI计算</li>
+                        <li><strong>未来太空探索</strong>：太空计算网络将成为太空探索的重要基础设施</li>
+                    </ul>
+                </div>
+
+                <h2 class="font-display font-bold text-2xl mt-8 mb-4">科技巨头的太空竞赛</h2>
+                <p>不仅是英伟达，<strong>埃隆·马斯克</strong>以及<strong>谷歌（Alphabet）</strong>等科技巨头目前都在积极探索太空数据中心的可行性，以满足未来庞大的AI需求。</p>
+                <p>相比于将海量数据通过网络传回地球处理，直接在太空中完成数据运算是更符合逻辑的演进方向。这种<strong>在轨处理模式</strong>正是太空探索的未来趋势。</p>
+
+                <!-- Keywords Section -->
+                <div class="keywords-section">
+                    <h3 class="font-display font-bold text-xl mb-4">📚 科技关键词</h3>
+                    
+                    <div class="keyword-item">
+                        <div class="keyword-term">太空数据中心 (Space Data Center)</div>
+                        <div class="keyword-def">将计算设备部署在太空（卫星或空间站），利用太空的太阳能和物理空间进行AI计算。太空有充沛的太阳能和几乎无限的物理空间，但散热是最大挑战。</div>
+                    </div>
+                    
+                    <div class="keyword-item">
+                        <div class="keyword-term">辐射散热 (Radiative Cooling)</div>
+                        <div class="keyword-def">通过热辐射将热量散发到周围空间的散热方式。在真空的太空中，这是唯一的散热方法，需要极其庞大的表面积才能有效释放热量，导致系统设计极其复杂。</div>
+                    </div>
+                </div>
+
+                <!-- ICC Section -->
+                <div class="icc-section">
+                    <h3 class="font-display font-bold text-xl mb-4">🎯 ICC创新挑战</h3>
+                    
+                    <div class="icc-item">
+                        <h4 class="font-bold mb-2">问题1：定义与理解</h4>
+                        <p class="text-muted">为什么在太空中散热比在地球上困难得多？辐射散热和地球上的风冷、水冷有什么区别？</p>
+                    </div>
+                    
+                    <div class="icc-item">
+                        <h4 class="font-bold mb-2">问题2：原创与竞品</h4>
+                        <p class="text-muted">除了英伟达，还有哪些公司或国家在探索太空计算？他们的方案有什么不同？</p>
+                    </div>
+                    
+                    <div class="icc-item">
+                        <h4 class="font-bold mb-2">问题3：测试与优化</h4>
+                        <p class="text-muted">如果要设计一个太空数据中心的散热系统，你会如何平衡散热效率、重量和成本这三个因素？</p>
+                    </div>
+                </div>
+
+                <!-- Question Box -->
+                <div class="question-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="font-medium">如果有一天我们可以在太空中建立大型数据中心，你觉得这会给人类社会带来什么改变？我们普通人会因此受益吗？</p>
+                </div>
+
+                <!-- Source -->
+                <div class="source-info">
+                    <p>参考资料：<a href="https://www.ithome.com/0/931/249.htm" target="_blank" class="text-accent hover:underline">IT之家《AI算力卷向太空，英伟达黄仁勋称散热是最大挑战》</a></p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <p class="text-center text-muted font-mono text-sm">© 2026 MG Maker Daily. 每日创客科技新闻</p>
+        </div>
+    </footer>
+</body>
+</html>
