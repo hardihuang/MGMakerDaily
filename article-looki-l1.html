@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从屏幕走进现实：Looki L1 让 AI 真正成为你的「生活队友」 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'ai': '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+        .video-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: #6b6b6b; text-decoration: none; }
+        .video-link:hover { color: #ff6b35; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.03.28</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill" style="color: #8b5cf6;">🤖 AI硬件</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-03-28</div>
+            <div class="font-mono text-sm text-muted mb-4">文章来源：极客公园 / 腾讯新闻</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">从屏幕走进现实：Looki L1 让 AI 真正成为你的「生活队友」</h1>
+            <p class="text-muted text-lg leading-relaxed">OpenClaw 让 AI 在数字世界具备了主动性，但现实世界仍是 AI 的盲区。Looki L1 通过 Proactive Intelligence Engine（主动式智能引擎），让 AI 从屏幕走进现实，通过摄像头、麦克风等传感器持续感知用户生活，实现情境触发而非时间触发的智能提醒，从「工具」进化为「关系」。</p>
+        </div>
+
+        <!-- Video Section -->
+        <div class="mb-8">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a;">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1mnw7zSEED&page=1&high_quality=1&danmaku=0" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="mt-2 text-right">
+                <a href="https://www.bilibili.com/video/BV1mnw7zSEED" target="_blank" class="video-link" onclick="event.stopPropagation();">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                    在 B 站观看
+                </a>
+            </div>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+            <h2>【🔍 前沿聚焦】</h2>
+            
+            <h3>背景痛点</h3>
+            <p>OpenClaw 的爆火让人们第一次感受到 AI 可以主动行动、主动决策、主动完成任务。但问题是，这种「主动性」几乎完全发生在数字世界——AI 感知不到你正在赶飞机、不知道你已经连续工作了 6 小时、更不会理解你刚刚经历的生活片段。现实世界，仍然是 AI 的盲区。</p>
+
+            <h3>技术突破原理</h3>
+            <p>Looki L1 是一款围绕「记录」和「理解生活」构建的 AI 设备，通过摄像头、麦克风等传感器持续捕捉用户日常。最新推出的 Looki PIE（Proactive Intelligence Engine）功能，让 AI 具备了三大核心能力：</p>
+            <ul>
+                <li><strong>连续多模态上下文构建</strong>：视觉（你看到了什么）+ 听觉（你听到了什么）+ 时间（事情发生的顺序），形成完整的「生活时间轴」</li>
+                <li><strong>情境触发机制</strong>：不同于传统 AI 的「时间触发」（如早上8点提醒），Looki 实现了「情境触发」——当系统判断你在走动、识别出你的位置、摄像头看到超市时，提醒才发生</li>
+                <li><strong>「分寸感」判断</strong>：AI 开始理解「什么时候该说话」，能判断当前情境、用户状态、是否适合介入</li>
+            </ul>
+
+            <h3>现实应用价值</h3>
+            <ul>
+                <li>坐出租车时提醒看窗外放松眼睛</li>
+                <li>长时间工作后提示休息</li>
+                <li>路过超市时提醒买水果</li>
+                <li>自动识别「高光时刻」主动延长记录，生成 vlog、漫画、生活记录</li>
+                <li>在机场提醒你记得拿行李、在疲劳时提示你休息</li>
+            </ul>
+
+            <h2>【🔑 核心科技关键词】</h2>
+            
+            <div class="keyword-box">
+                <div class="keyword-title">Keyword 01</div>
+                <h3 style="margin-top: 0;">主动式智能体 (Proactive Agent)</h3>
+                <p>不同于被动等待指令的传统 AI，Proactive Agent 能够主动感知环境、判断情境、在合适时机主动介入用户生活，从「工具」进化为「关系」。</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">Keyword 02</div>
+                <h3 style="margin-top: 0;">情境触发 (Contextual Trigger)</h3>
+                <p>一种全新的 AI 交互机制，触发条件不再是预设的时间，而是现实世界中的事件——位置变化、视觉识别、行为模式等，让「现实世界成为 AI 的提示词」。</p>
+            </div>
+
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                    定义与调研
+                </div>
+                <p>如果让你设计一个能「理解生活」的 AI 设备，你会选择哪些传感器？除了摄像头和麦克风，还有什么方式可以让 AI 感知用户的真实状态？</p>
+            </div>
+
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                    创新与差异
+                </div>
+                <p>Looki 选择做「生活记录者」而非「效率工具」，这个定位有什么不同？在 AI 产品都在追求「更高效」时，「更有感知」会带来什么独特的价值？</p>
+            </div>
+
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                    测试与迭代
+                </div>
+                <p>AI 的「分寸感」很难把握——太频繁会打扰，太稀疏会遗忘。如果你是产品经理，你会如何设计测试方案来找到这个平衡点？</p>
+            </div>
+
+            <h2>【💬 留给你的问题：科技向善】</h2>
+            
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15v-2h2v2h-2zm0-10v6h2V7h-2z"/></svg>
+                    深度思考
+                </div>
+                <p>一个持续记录你生活的 AI 设备，既可能成为最懂你的「队友」，也可能成为隐私的「黑洞」。当 AI 能够「看见」你的一切，我们应该如何设计技术边界，让这种「被理解」成为温暖而非恐惧？</p>
+            </div>
+
+            <div class="mt-12 pt-8 border-t-2 border-ink">
+                <p class="font-mono text-sm text-muted">
+                    原文来源：<a href="https://news.qq.com/rain/a/20260324A027JR00" target="_blank" class="back-link">极客公园 / 腾讯新闻 ↗</a>
+                </p>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <p class="font-display font-bold text-xl">MG Maker Daily</p>
+                    <p class="text-muted font-mono text-sm mt-1">给小小创客的科技新闻 · 每天3分钟</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-mono text-sm text-muted">Made with 🧡 for young makers</p>
+                    <p class="font-mono text-xs text-muted mt-1">© 2026 MG Maker Daily</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
