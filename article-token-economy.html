@@ -7,132 +7,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'ai': '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { background-color: #fafaf8; color: #1a1a1a; font-family: 'Inter', 'Noto Sans SC', sans-serif; }
-        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; text-decoration: none; color: #1a1a1a; display: inline-block; }
-        .nav-pill:hover, .nav-pill.active { background: #1a1a1a; color: #fff; }
-        .category-pill { border: 1.5px solid #8b5cf6; color: #8b5cf6; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; display: inline-block; }
-        .video-link { display: inline-flex; align-items: center; gap: 4px; font-family: 'Courier Prime', monospace; font-size: 0.7rem; color: #ff3b30; text-decoration: none; border: 1px solid #ff3b30; padding: 2px 8px; }
-        .video-link:hover { background: #ff3b30; color: #fff; }
-        .keyword-box { border: 2px solid #8b5cf6; background: rgba(139, 92, 246, 0.05); padding: 1rem; margin: 1.5rem 0; }
-        .icc-box { border-left: 3px solid #ff6b35; background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 107, 53, 0.02) 100%); padding: 1rem 1.25rem; margin: 1.5rem 0; }
-        .question-box { border: 2px solid #1a1a1a; background: #fff; padding: 1.25rem; margin: 1.5rem 0; }
-        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; }
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
     </style>
 </head>
-<body class="min-h-screen">
-    <header class="border-b-2 border-gray-900 bg-white">
-        <div class="max-w-6xl mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-900 text-white flex items-center justify-center font-mono text-xl font-bold">M</div>
-                    <div>
-                        <h1 class="text-2xl font-bold tracking-tight">MG Maker Daily</h1>
-                        <p class="font-mono text-xs text-gray-500">每日创客科技</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <nav class="border-b-2 border-gray-900 bg-white sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3">
-            <div class="flex gap-2">
-                <a href="index.html" class="nav-pill">首页</a>
-                <a href="index.html?category=robot" class="nav-pill">机器人</a>
-                <a href="index.html?category=ai" class="nav-pill active">AI</a>
-                <a href="index.html?category=space" class="nav-pill">航天</a>
-                <a href="index.html?category=hardware" class="nav-pill">硬件</a>
-                <a href="about.html" class="nav-pill">关于</a>
-            </div>
+<body class="font-body min-h-screen">
+    <nav class="border-b-2 border-ink py-4 px-6">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="font-display font-bold text-xl tracking-tight">MG Maker Daily</a>
+            <div class="font-mono text-sm text-muted">每日创客科技</div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-8">
-        <article class="bg-white hand-drawn p-6 md:p-10">
-            <div class="flex flex-wrap items-center gap-3 mb-6">
-                <span class="category-pill">AI/科技</span>
-                <span class="font-mono text-xs text-gray-500">NID039</span>
-                <span class="font-mono text-xs text-gray-500">BBC</span>
-                <a href="https://b23.tv/cT0LTGU" target="_blank" class="video-link">📺 视频</a>
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <div class="mb-8">
+            <span class="category-pill text-ai">AI</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-03-31</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight">Token为王，如何打赢AI时代"新大宗商品"争夺战？</h1>
+        </div>
+
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1S5zfYDE2N&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="400" style="border-radius: 4px;"></iframe>
+            </div>
+        </div>
+
+        <article class="article-content">
+            <h2>【🔍 前沿聚焦】</h2>
+            
+            <p><strong>背景痛点：</strong></p>
+            <p>多数受访者都没料到，随着"龙虾"的到来，Token需求的爆发来得如此之快。</p>
+            
+            <p><strong>技术突破原理：</strong></p>
+            <p>Token是大语言模型处理信息的基本单位。在AI世界，Token可以是一个词、一段代码，也可以是图像或视频中的一个像素区块。当用户向AI模型提问，模型先把用户的话"切"成Token，算完后再把结果Token拼回成句子。</p>
+            
+            <p>百度千帆平台产品负责人张婷将Token比喻成"乐高积木"——单个Token是碎片，但大模型把成千上万个Token的"拼法"学会后，就能理解语义、生成文本、回答问题。每生成一个Token，都在调用数据中心的GPU算力，并伴随着电力消耗。</p>
+            
+            <p>过去两年，大模型竞争的核心叙事是模型能力：谁更聪明，谁就更接近AGI。随着Agent时代的来临，Token消耗从人机对话升级为机器自循环，消耗量级跳涨。Chatbot单轮对话消耗约1000到3000个Token，而"龙虾"跑一次深度研究要经历感知、规划、执行、反思等多个循环，稍微复杂的任务就要吃掉百万级Token。</p>
+            
+            <p><strong>现实应用价值：</strong></p>
+            <p>Token正在成为AI时代的"新石油"和"新集装箱"。中国模型足量、低价，一些企业乐意花钱补贴海外开发者，这些都放大了市场持续调用的需求。Token出海，或成为中国制造之后下一个出口引擎。</p>
+
+            <div class="keyword-box">
+                <div class="keyword-title">核心科技关键词</div>
+                <p><strong>Token（词元）</strong></p>
+                <p>大语言模型处理信息的基本单位，可以是一个词、一段代码，也可以是图像或视频中的一个像素区块。当用户向AI模型提问，模型先把用户的话"切"成Token，算完后再把结果Token拼回成句子。</p>
+                <br>
+                <p><strong>Token经济学</strong></p>
+                <p>将Token作为AI服务的计量单位和价值锚点，实现按量计费、可交易的新型商业模式。Token从模型训练的技术副产品，演变为驱动数字经济的核心生产要素。</p>
             </div>
 
-            <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-6">
-                Token为王，如何打赢AI时代"新大宗商品"争夺战？
-            </h1>
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            
+            <p><strong>定义与调研：</strong></p>
+            <p>除了AI推理服务，Token经济还能应用在哪些场景？（比如内容创作、数据分析、教育培训）这些场景有什么共同特点？</p>
+            
+            <p><strong>创新与差异：</strong></p>
+            <p>相比于传统的软件订阅模式，Token计费模式的优势和劣势分别是什么？企业应该如何选择适合自己的计费方式？</p>
+            
+            <p><strong>测试与迭代：</strong></p>
+            <p>如果你的AI服务Token消耗成本过高，你会从哪些方面优化？（模型选择、提示词优化、缓存策略？）</p>
 
-            <div class="prose prose-lg max-w-none">
-                <p class="text-lg leading-relaxed mb-6 text-gray-600">
-                    随着Agent时代的来临，Token消耗量指数级增长，从模型训练的技术副产品一跃成为可计量、可交易的战略资产。3月22日，国家数据局正式将Token翻译为"词元"，确立其在智能时代的价值锚点地位。
-                </p>
+            <div class="question-box">
+                <div class="question-title">💬 留给你的问题：科技向善</div>
+                <p>当Token成为AI时代的"新石油"，你认为个人和企业应该如何储备和利用这种新型资源？面对Token消耗可能带来的成本压力，你会如何平衡AI使用效率和经济效益？</p>
+            </div>
 
-                <h2 class="text-2xl font-bold mt-8 mb-4">【🔍 前沿聚焦】</h2>
-                
-                <p><strong>背景痛点：</strong></p>
-                <p>多数受访者都没料到，随着"龙虾"的到来，Token需求的爆发来得如此之快。</p>
-
-                <p><strong>技术突破原理：</strong></p>
-                <p>Token是大语言模型处理信息的基本单位。在AI世界，Token可以是一个词、一段代码，也可以是图像或视频中的一个像素区块。当用户向AI模型提问，模型先把用户的话"切"成Token，算完后再把结果Token拼回成句子。</p>
-
-                <p>百度千帆平台产品负责人张婷将Token比喻成"乐高积木"——单个Token是碎片，但大模型把成千上万个Token的"拼法"学会后，就能理解语义、生成文本、回答问题。每生成一个Token，都在调用数据中心的GPU算力，并伴随着电力消耗。</p>
-
-                <p>过去两年，大模型竞争的核心叙事是模型能力：谁更聪明，谁就更接近AGI。随着Agent时代的来临，Token消耗从人机对话升级为机器自循环，消耗量级跳涨。Chatbot单轮对话消耗约1000到3000个Token，而"龙虾"跑一次深度研究要经历感知、规划、执行、反思等多个循环，稍微复杂的任务就要吃掉百万级Token。</p>
-
-                <p><strong>现实应用价值：</strong></p>
-                <p>Token正在成为AI时代的"新石油"和"新集装箱"。中国模型足量、低价，一些企业乐意花钱补贴海外开发者，这些都放大了市场持续调用的需求。Token出海，或成为中国制造之后下一个出口引擎。</p>
-
-                <div class="keyword-box">
-                    <div class="font-mono text-xs text-purple-600 uppercase mb-2">🔑 核心科技关键词</div>
-                    <p><strong>Token（词元）</strong></p>
-                    <p>大语言模型处理信息的基本单位，可以是一个词、一段代码，也可以是图像或视频中的一个像素区块。当用户向AI模型提问，模型先把用户的话"切"成Token，算完后再把结果Token拼回成句子。</p>
-                    <p class="mt-3"><strong>Token经济学</strong></p>
-                    <p>将Token作为AI服务的计量单位和价值锚点，实现按量计费、可交易的新型商业模式。Token从模型训练的技术副产品，演变为驱动数字经济的核心生产要素。</p>
-                </div>
-
-                <div class="icc-box">
-                    <div class="font-mono text-xs text-orange-600 uppercase mb-2">💡 创科启发：ICC 赛事思维预演</div>
-                    <p><strong>定义与调研：</strong>除了AI推理服务，Token经济还能应用在哪些场景？（比如内容创作、数据分析、教育培训）这些场景有什么共同特点？</p>
-                    <p class="mt-2"><strong>创新与差异：</strong>相比于传统的软件订阅模式，Token计费模式的优势和劣势分别是什么？企业应该如何选择适合自己的计费方式？</p>
-                    <p class="mt-2"><strong>测试与迭代：</strong>如果你的AI服务Token消耗成本过高，你会从哪些方面优化？（模型选择、提示词优化、缓存策略？）</p>
-                </div>
-
-                <div class="question-box">
-                    <div class="font-mono text-xs uppercase tracking-wider mb-2">💬 留给你的问题：科技向善</div>
-                    <p>当Token成为AI时代的"新石油"，你认为个人和企业应该如何储备和利用这种新型资源？面对Token消耗可能带来的成本压力，你会如何平衡AI使用效率和经济效益？</p>
-                </div>
-
-                <div class="mt-8 mb-6">
-                    <h3 class="font-display text-xl font-bold mb-4">📺 相关视频</h3>
-                    <div class="hand-drawn bg-white overflow-hidden" style="border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a;">
-                        <iframe 
-                            src="https://player.bilibili.com/player.html?bvid=BV1X4N3z7E7V&page=1&high_quality=1&danmaku=0&autoplay=0" 
-                            width="100%" 
-                            height="400" 
-                            frameborder="0" 
-                            allowfullscreen
-                            style="display: block;">
-                        </iframe>
-                    </div>
-                    <p class="text-sm text-gray-500 mt-3 text-center font-mono">
-                        <a href="https://b23.tv/cT0LTGU" target="_blank" class="underline">Token中文名定了：词元 - 哔哩哔哩</a>
-                    </p>
-                </div>
-
-                <div class="mt-8 pt-6 border-t border-gray-300">
-                    <p class="font-mono text-xs text-gray-500">
-                        原文来源：<a href="https://finance.sina.com.cn/jjxw/2026-03-31/doc-inhsvfsn6055945.shtml" target="_blank" class="underline">新浪财经</a>
-                    </p>
-                </div>
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://finance.sina.com.cn/jjxw/2026-03-31/doc-inhsvfsn6055945.shtml" target="_blank" class="text-accent hover:underline">新浪财经：Token为王，如何打赢AI时代"新大宗商品"争夺战？ →</a>
             </div>
         </article>
+
+        <div class="mt-12 pt-8 border-t-2 border-ink">
+            <a href="index.html" class="back-link">← 返回首页</a>
+        </div>
     </main>
 
-    <footer class="border-t-2 border-gray-900 bg-white mt-12">
-        <div class="max-w-6xl mx-auto px-4 py-6">
-            <p class="font-mono text-xs text-gray-500 text-center">
-                MG Maker Daily — 每日创客科技 | 为青少年创客精选全球科技资讯
-            </p>
-        </div>
-    </footer>
-</body>
-</html>
+    <footer class="border-t-2 border-ink mt-20 py-8 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="font-display font-bold text-lg mb-2">MG Maker Daily</div>
+            <div class="font-mono text-sm text-muted">每日创客科技 · 启发下一代发明家</div>
