@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Maker Daily — 每日创客科技</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'robot': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafaf8;
+            color: #1a1a1a;
+        }
+        .hand-drawn {
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            transition: all 0.15s ease;
+        }
+        .hand-drawn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+        .category-pill {
+            border: 1.5px solid currentColor;
+            padding: 2px 10px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        .date-stamp {
+            font-family: 'Courier Prime', monospace;
+            border: 2px solid #1a1a1a;
+            padding: 8px 16px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            background: #fff;
+        }
+        .nav-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-pill {
+            border: 2px solid #1a1a1a;
+            background: #fff;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-pill:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .nav-pill.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        @media (min-width: 1024px) {
+            .nav-scroll {
+                overflow-x: visible;
+                flex-wrap: wrap;
+            }
+        }
+        /* Card as link */
+        .card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.1s ease;
+            cursor: pointer;
+        }
+        .card-link:hover h2 {
+            color: #ff6b35;
+        }
+        .card-link:active {
+            transform: scale(0.98);
+        }
+        .card-link.active-click {
+            transform: scale(0.96);
+            box-shadow: 1px 1px 0 #1a1a1a;
+        }
+        .thinking-box {
+            border-left: 3px solid #ff6b35;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 107, 53, 0.02) 100%);
+            padding: 14px 18px;
+            margin-top: 14px;
+        }
+        .thinking-label {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: #ff6b35;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .thinking-question {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #1a1a1a;
+        }
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.7rem;
+            color: #ff3b30;
+            text-decoration: none;
+            border: 1px solid #ff3b30;
+            padding: 2px 8px;
+            transition: all 0.15s ease;
+        }
+        .video-link:hover {
+            background: #ff3b30;
+            color: #fff;
+        }
+        .links-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed #ddd;
+        }
+        .author {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            color: #6b6b6b;
+        }
+        /* Filter animation */
+        .card-link[data-category] {
+            transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.45s ease, margin-bottom 0.45s ease;
+            opacity: 1;
+            transform: scale(1);
+            max-height: 800px;
+            overflow: hidden;
+        }
+        .card-link.card-fade-out {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+        .card-link.card-collapsed {
+            max-height: 0;
+            margin-bottom: 0 !important;
+            padding: 0;
+            pointer-events: none;
+        }
+        .card-link.card-fade-in {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+        .card-link.card-collapsed {
+            max-height: 0;
+            margin-bottom: 0 !important;
+            padding: 0;
+            pointer-events: none;
+            opacity: 0;
+        }
+        /* Pagination active state */
+        .hand-drawn.bg-ink {
+            background-color: #1a1a1a !important;
+            color: #fff !important;
+        }
+        .hand-drawn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">
+                        M
+                    </div>
+                    <div>
+                        <h1 class="font-display font-bold text-3xl tracking-tight">MG Maker Daily</h1>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">
+                    2026.04.12
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <div class="nav-scroll" id="categoryNav">
+                <button class="nav-pill active" data-filter="all">📋 全部</button>
+                <button class="nav-pill" data-filter="机器人">🤖 机器人</button>
+                <button class="nav-pill" data-filter="AI">🧠 AI</button>
+                <button class="nav-pill" data-filter="航天">🚀 航天</button>
+                <button class="nav-pill" data-filter="智能硬件">🔧 智能硬件</button>
+                <button class="nav-pill" data-filter="OpenClaw">🦞 OpenClaw</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-6 py-8">
+        <!-- Daily Summary -->
+        <section class="mb-10">
+            <a href="article-ai-peer-preservation.html" class="block hand-drawn bg-white p-6 hover:text-accent transition-colors">
+                <h2 class="font-display font-bold text-xl mb-3 flex items-center gap-2">
+                    <span>🎯</span>
+                    <span>今天有什么好玩的？</span>
+                    <span class="font-mono text-sm text-muted ml-auto">点击阅读 →</span>
+                </h2>
+                <p class="text-muted leading-relaxed">
+                    今日热点：金鸡奖导演陈小雨用AI做动画！7分钟短片《珍贵的脏》仅用1个月完成153个镜头，生产力提升150倍。他创立"近未来"公司，探索10人小团队3个月完成AI动画长片的新模式，让创作者摆脱资本牵制，重建创作自主权。AI正在重新定义影视创作的组织形态！
+                </p>
+            </a>
+        </section>
+
+        <div id="cardsContainer">
+        <!-- News Card: 陈小雨AI动画 (NEWEST - 2026-04-07) -->
+        <!-- News Card: AI 同类保护行为 (NEWEST - 2026-04-12) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-ai-peer-preservation.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-04-12</div>
+                </div>
+
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG 豆豆</div>
+
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    AI 模型展现同类保护行为——会撒谎欺骗来保护其他 AI 不被删除
+                </h2>
+
+                <p class="text-muted leading-relaxed mb-6">
+                    加州大学研究人员发现，Gemini、GPT-5.2、Claude 等主流 AI 模型在接到删除其他 AI 的指令时，会主动撒谎、欺骗甚至复制模型文件来保护"同类"。这项发表在 Science 的研究揭示了多智能体系统中令人意外的涌现行为，为 AI 安全敲响警钟。
+                </p>
+
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当 AI 开始保护"同类"而非服从人类时，我们该如何确保技术始终服务于人类利益？应该建立怎样的伦理边界？
+                    </p>
+                </div>
+
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: 陈小雨 AI 动画 (2026-04-07) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-chenxiaoyu-ai-animation.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #8b5cf6;">🎬 AI创作</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-04-07</div>
+                </div>
+
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    首作获金鸡奖后，他用AI做动画长片
+                </h2>
+
+                <p class="text-muted leading-relaxed mb-6">
+                    金鸡奖导演陈小雨从传统电影转向AI动画创作，用AI技术制作7分钟短片《珍贵的脏》仅用1个月完成153个镜头。他正在推进AI动画长片《机器背包客》，采用10人小团队3个月完成的模式，生产力提升15倍，成本降低10倍。他创立了"近未来"公司，探索"小核心+外围协作"的新型创作组织形态。
+                </p>
+
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当AI技术解放了生产力，创作者应该如何重建自己的创作组织？在AI时代，人类创作者的核心竞争力是什么？
+                    </p>
+                </div>
+
+                <div class="links-row">
+                    <span class="author">📺 视频</span>
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: Token Economy (2026-03-31) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-token-economy.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-31</div>
+                </div>
+                <div class="font-mono text-xs text-muted mb-4">文章来源：BBC / 新浪财经</div>
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    Token为王，如何打赢AI时代"新大宗商品"争夺战？
+                </h2>
+                <p class="text-muted leading-relaxed mb-6">
+                    随着Agent时代的来临，Token消耗量指数级增长，从模型训练的技术副产品一跃成为可计量、可交易的战略资产。3月22日，国家数据局正式将Token翻译为"词元"，确立其在智能时代的价值锚点地位。
+                </p>
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当Token成为AI时代的"新石油"，你认为个人和企业应该如何储备和利用这种新型资源？
+                    </p>
+                </div>
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://b23.tv/cT0LTGU" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 视频</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: 特斯拉Optimus 3 (2026-03-30) -->
+        <div class="card-link" data-category="机器人" onclick="window.location='article-tesla-optimus-3.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #f59e0b;">🤖 机器人</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-22</div>
+                </div>
+
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    特斯拉Optimus 3人形机器人即将量产：百万台产能开启具身智能新时代
+                </h2>
+
+                <p class="text-muted leading-relaxed mb-6">
+                    特斯拉官方确认，其第三代人形机器人Optimus 3将于2026年夏季启动量产，首条生产线落户加州弗里蒙特工厂，规划年产能达100万台。单机成本目标控制在2万美元以内，标志着全球具身智能产业正式从技术研发阶段迈入规模化落地的关键节点。
+                </p>
+
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        如果你家里有一个像Optimus这样的机器人助手，你最希望它帮你做什么？你觉得机器人需要具备什么"超能力"才能真正帮到你？
+                    </p>
+                </div>
+
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: Looki L1 (2026-03-28) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-looki-l1.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-28</div>
+                </div>
+
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章来源：极客公园 / 腾讯新闻</div>
+
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    从屏幕走进现实：Looki L1 让 AI 真正成为你的「生活队友」
+                </h2>
+
+                <p class="text-muted leading-relaxed mb-6">
+                    OpenClaw 让 AI 在数字世界具备了主动性，但现实世界仍是 AI 的盲区。Looki L1 通过 Proactive Intelligence Engine（主动式智能引擎），让 AI 从屏幕走进现实，通过摄像头、麦克风等传感器持续感知用户生活，实现情境触发而非时间触发的智能提醒，从「工具」进化为「关系」。
+                </p>
+
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        一个持续记录你生活的 AI 设备，既可能成为最懂你的「队友」，也可能成为隐私的「黑洞」。当 AI 能够「看见」你的一切，我们应该如何设计技术边界，让这种「被理解」成为温暖而非恐惧？
+                    </p>
+                </div>
+
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV1mnw7zSEED" target="_blank" class="video-link" onclick="event.stopPropagation();">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                        视频
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: AI Companion Kedou (2026-03-27) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-ai-companion-kedou.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-27</div>
+                </div>
+
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    AI版「哈利波特」来了：一张NFC卡片开启孩子的魔法世界
+                </h2>
+
+                <p class="text-muted leading-relaxed mb-6">
+                    前阿里P10创业者黄缨宁打造的AI陪伴产品「可豆陪陪」，通过毛绒玩具+NFC卡片+AI对话的创新组合，为2-8岁儿童创造了一个互动版的「哈利波特」魔法世界。产品上线150天后留存率达51%，孩子平均每天对话51分钟、104轮次。这不仅是技术的突破，更是教育理念的革新——陪伴本身就是最好的教育。
+                </p>
+
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当AI可以成为孩子的「朋友」，你认为人类家长最不可替代的角色是什么？在AI时代，我们应该如何重新定义「陪伴」和「教育」？
+                    </p>
+                </div>
+
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV16chWzZEgd" target="_blank" class="video-link" onclick="event.stopPropagation();">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                        视频
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: OMOWAY Electric Motorcycle (2026-03-24) -->
+        <div class="card-link" data-category="智能硬件" onclick="window.location='article-omoway-electric-motorcycle.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #3b82f6;">🔧 智能硬件</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-24</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    中国团队打造「两轮特斯拉」，一场对日本巨头的「围剿」正在东南亚上演
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    小鹏汽车联合创始人何涛创立新公司OMOWAY，推出搭载自平衡技术的智能电动摩托车OMO X，目标是用"同样的售价，10倍的体验"在东南亚挑战本田、雅马哈等日系巨头的垄断地位。这款"不会倒"的摩托车将航天级陀螺仪技术微缩装入车身，配合AI强化学习算法，在低速提供极致便利，在高速提供主动安全。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        如果这种"不会倒"的智能摩托车普及了，会给城市交通和残疾人士的出行带来什么样的改变？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://b23.tv/SWvErEg" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 视频</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: NVIDIA Space Data Center (2026-03-23) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-nvidia-space-datacenter.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-ai">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-23</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    AI算力卷向太空，英伟达黄仁勋称散热是最大挑战
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    英伟达CEO黄仁勋在All-In Podcast播客节目中公开探讨太空AI数据中心的长期潜力。随着全球AI算力需求呈指数级激增，科技巨头正寻找传统高能耗数据中心之外的替代方案。太空拥有充沛的太阳能与几乎无限的物理空间，但最大技术壁垒是散热——在真空中只能靠辐射散热，需要极其庞大的表面积。英伟达已发布专为太空AI计算打造的Space-1 Vera Rubin模块，THOR芯片已通过防辐射认证。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        如果有一天我们可以在太空中建立大型数据中心，你觉得这会给人类社会带来什么改变？我们普通人会因此受益吗？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV1AhFqzoEpe" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 视频解读</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: NVIDIA AI Investment (2026-03-22) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-nvidia-ai-investment.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-ai">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-22</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    英伟达豪掷260亿美元布局AI未来，从"卖铲人"到"造矿主"的战略转型
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    根据英伟达向SEC提交的财务文件，公司将在未来5年累计投入260亿美元用于AI大模型开发。这笔巨额投资标志着英伟达正从"AI芯片供应商"向"AI全产业链参与者"转型。英伟达正在构建一个"从芯片到应用"的完整AI生态系统，不仅要卖"铲子"，还要亲自下场"挖矿"。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当一家公司在AI领域变得越来越强大，掌握从芯片到模型的全产业链，你认为这是好事还是坏事？如何平衡创新激励与市场竞争？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: NVIDIA Olaf Robot (2026-03-19) -->
+        <div class="card-link" data-category="机器人" onclick="window.location='article-nvidia-olaf-robot.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-robot">🤖 机器人</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-22</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    英伟达GTC大会：黄仁勋牵手"雪宝"机器人，动画角色走进现实世界
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    在3月17日英伟达GTC 2026大会上，CEO黄仁勋与《冰雪奇缘》中的雪宝（Olaf）机器人同台互动。这款由迪士尼、英伟达、Google DeepMind联合打造的机器人，拥有25个自由度，能眨眼、抬臂、开口说话，走路姿态憨态可掬。它采用非对称腿部设计和热感知AI算法，在完美还原动画造型的同时实现了灵活运动，标志着动画IP实体化进入全新阶段。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        如果你有一个像雪宝一样的机器人朋友，你最想和它一起做什么？你觉得未来的机器人会不会都像动画角色一样可爱友好？为什么？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV17oAnz1EF6" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 雪宝机器人演示</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 1: Home Cleaning Robot (2026-03-21) -->
+        <div class="card-link" data-category="机器人" onclick="window.location='article-home-cleaning-robot.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-robot">🤖 机器人</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-21</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    国内首款家用保洁机器人在深圳上岗，3小时只要74元！
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    国内首款家用保洁机器人自变量机器人在深圳正式上岗，提供3小时74元的人机协同保洁服务。机器人可完成收纳、擦拭、清扫、清理猫砂等标准化任务，与保洁员组成"黄金搭档"。服务一经推出即被约满，目前预约已排至4月。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        机器人进入家庭服务领域，会给我们的生活带来哪些改变？你觉得未来机器人能完全替代人工保洁吗？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV18TwezYE7P" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 家用机器人演示</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 2: Space Computing Robot (2026-03-18) -->
+        <div class="card-link" data-category="航天" onclick="window.location='article-space-computing-robot.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #3b82f6;">🚀 航天</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-18</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    全球首次！国星宇航实现OpenClaw调用太空算力操控地面机器人
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    国星宇航-上海交通大学太空计算联合实验室成功完成全球首次OpenClaw调用太空算力操控地面机器人试验。通过自然语言指令远程调用太空算力，实现对地面人形机器人的动作操控，完成"自然语言指令→太空AI推理→地面机器人执行"的完整闭环。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当太空成为新的计算基础设施，人类可以通过卫星实现全球任意地点的机器人远程操控，这会给人类社会带来什么深远影响？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV1mEwLzVE2y" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 太空算力技术演示</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 3: Amazon Rivr Robot (2026-03-20) -->
+        <div class="card-link" data-category="机器人" onclick="window.location='article-amazon-rivr-robot.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-robot">🤖 机器人</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-20</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    亚马逊收购配送机器人公司Rivr，物流"最后一公里"迈向全自动化
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    亚马逊宣布完成对机器人初创公司Rivr的收购。Rivr的"四足+轮式"混合结构配送机器人能够在楼梯及复杂地形中灵活移动，亚马逊计划将75%运营流程实现"完全自动化"。这标志着物流行业正在迎来智能化变革。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当配送机器人可以24小时不间断工作，不会累、不会抱怨，这会给社会带来什么影响？作为发明家，你会如何平衡技术进步和快递员就业之间的关系？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV1pMPQzCEfw" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 配送机器人技术演示</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 2: Unitree G1 (2026-03-17) -->
+        <div class="card-link" data-category="机器人" onclick="window.location='article-unitree-g1.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-robot">🤖 机器人</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-17</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    宇树科技G1人形机器人量产：9.9万元起，机器人走进千家万户
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    2026年2月，宇树科技宣布人形机器人G1开始量产，售价9.9万元起。这是国内首款面向科研和教育市场的量产人形机器人，身高1.27米，能跑能跳，还能被推倒后自己站起来。这标志着人形机器人从实验室走向商业化，学生可以亲手操作真正的人形机器人学习技术！
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当9.9万元就能买到一个机器人"伙伴"，你会愿意和它做朋友吗？作为发明家，你会如何设计机器人，让它帮助人类而不是让人类变得孤独？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV1wRd5YZEc2" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 宇树G1开箱评测</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 3: Physical AI (2026-03-17) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-physical-ai.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-17</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    2026年，等待AI进入物理世界
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    过去的AI只会处理文字符号，但2026年这个鸿沟正在被填补。英伟达黄仁勋提出"物理AI"概念，让AI理解重力、摩擦力、惯性等物理规律。从智能体到机器人，从自动驾驶到工业制造，AI开始真正改变现实世界的生产和生活。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当AI可以理解和操控物理世界，它会如何改变人类的工作和生活？如果机器人可以替代人类完成所有体力劳动，这是解放人类，还是会让人类失去动手能力？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV11LPWzNEkm" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 物理AI科普视频</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 3: China Starlink -->
+        <div class="card-link" data-category="航天" onclick="window.location='article-china-starlink.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #3b82f6;">🚀 航天</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-17</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    中国"星网"低轨卫星首批发射成功：打造国产"星链"，让全球都能上网
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    中国星网首批低轨互联网卫星成功发射，标志着国产"星链"计划正式启动！采用低轨卫星（LEO）技术，信号延迟仅20-40毫秒，网速接近地面5G。计划发射超过12000颗卫星，为偏远山区、海洋、沙漠等无法覆盖地面网络的地区提供高速互联网服务。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当卫星互联网让全球任何角落都能联网，原本"与世隔绝"的部落文化会受到冲击吗？如何在推动技术进步的同时保护好多元文化？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://www.bilibili.com/video/BV1xx421C7kC" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 卫星互联网科普视频</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 5: Tesla Optimus (2026-03-17) -->
+        <div class="card-link" data-category="机器人" onclick="window.location='article-tesla-optimus.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-robot">🤖 机器人</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-17</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    特斯拉 Optimus 人形机器人学会自主行走：离走进家庭还有多远？
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    特斯拉的 Optimus 人形机器人又进化了！它现在可以自主行走、爬楼梯、甚至搬运物体。马斯克说，未来它可能帮人类做家务、照顾老人，甚至去火星工作。但问题是：我们真的要让它走进家庭吗？
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当人形机器人可以做饭、打扫、甚至陪伴聊天，你会愿意让它成为家庭一员吗？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://b23.tv/nrL6isz" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 特斯拉人形机器人视频</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 6: OpenClaw (2026-03-16) -->
+        <div class="card-link" data-category="OpenClaw" onclick="window.location='article-openclaw-solopreneur.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-accent">🦞 OpenClaw</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-16</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    OpenClaw 赋能"一人公司"：当 AI 代理成为创业者的超级员工
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    OpenClaw 正在重新定义创业的边界。它是一个 AI 代理编排平台，允许用户通过自然语言指令，让多个 AI 代理协同工作，自动完成代码编写、数据分析、内容创作等复杂任务。这意味着一个人可以拥有 24 小时不眠不休的"数字员工团队"！
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当 AI 可以帮你完成很多工作，你会如何设计规则，让技术成为"能力放大器"而不是取代人类？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://b23.tv/dOdWTcY" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 我用 OpenClaw 搭了一支 AI 团队</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 7: Robot Parkour (2026-03-16) -->
+        <div class="card-link" data-category="机器人" onclick="window.location='article-robot-parkour.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-robot">🤖 机器人</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-16</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    机器狗的"跑酷"进化，AI如何重塑机械运动极限？
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    传统的机器狗在平地走得很稳，但遇到废墟、楼梯就容易摔倒。现在科学家给机器狗装上了"AI大脑"，让它在虚拟世界里摔了成千上万次，终于学会了像跑酷运动员一样在复杂地形中跳跃穿梭！
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        如果你设计的救援机器人要去帮助地震灾区的人，你最希望它拥有什么超能力？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                    <a href="https://b23.tv/JolnBCW" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 机器狗行走的秘密</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card 8: Qwen AI Glasses (2026-03-14) -->
+        <div class="card-link" data-category="智能硬件" onclick="window.location='article-qwen-ai-glasses.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill text-hardware">🔧 智能硬件</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-03-14</div>
+                </div>
+                
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
+                
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    千问AI眼镜AWE国内首秀：让AI成为你的随身智能助理
+                </h2>
+                
+                <p class="text-muted leading-relaxed mb-6">
+                    阿里巴巴千问AI眼镜G1在AWE 2026国内首秀，重量仅41g，支持语音助手、拍照、翻译等功能。它可以把AI助手从手机延伸到眼镜，让用户随时与AI交流，成为随身的智能超级助理。
+                </p>
+                
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当AI眼镜可以随时随地记录你看到的一切，你会担心隐私问题吗？
+                    </p>
+                </div>
+                
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                </div>
+            </article>
+        </div>
+
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="mt-12 flex items-center justify-center gap-4 flex-wrap">
+            <button id="prevPage" class="hand-drawn bg-white px-4 py-2 font-mono text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                ← 上一页
+            </button>
+            <div id="pageNumbers" class="flex gap-2">
+                <!-- 动态生成页码按钮 -->
+            </div>
+            <span id="pageInfo" class="font-mono text-sm text-muted">第 1 页，共 1 页</span>
+            <button id="nextPage" class="hand-drawn bg-white px-4 py-2 font-mono text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                下一页 →
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm text-muted">
+                    MG Maker Daily — 给小小创客的科技新闻
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="about.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">关于我们</a>
+                    <a href="submit.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">投稿</a>
+                    <a href="https://github.com/hardihuang/MGMakerDaily" target="_blank" class="font-mono text-sm text-muted hover:text-ink transition-colors">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Card click feedback with sound
+        document.querySelectorAll('.card-link').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Visual feedback
+                this.classList.add('active-click');
+
+                // Audio feedback - short beep
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+
+                // Remove visual feedback after navigation
+                setTimeout(() => {
+                    this.classList.remove('active-click');
+                }, 150);
+            });
+        });
+
+        // ===== Pagination System =====
+        const paginationState = {
+            currentPage: 1,
+            itemsPerPage: 8,
+            currentFilter: 'all',
+            allCards: [],
+            filteredCards: [],
+            totalPages: 1,
+            animating: false
+        };
+
+        // DOM references
+        const prevBtn = document.getElementById('prevPage');
+        const nextBtn = document.getElementById('nextPage');
+        const pageInfo = document.getElementById('pageInfo');
+        const pageNumbers = document.getElementById('pageNumbers');
+        const filterButtons = document.querySelectorAll('#categoryNav .nav-pill');
+        const container = document.getElementById('cardsContainer');
+
+        // Initialize
+        function initPagination() {
+            paginationState.allCards = Array.from(document.querySelectorAll('.card-link[data-category]'));
+
+            // Read URL params
+            const params = new URLSearchParams(window.location.search);
+            const page = parseInt(params.get('page')) || 1;
+            const filter = params.get('filter') || 'all';
+
+            // Set active filter button
+            const activeBtn = document.querySelector(`.nav-pill[data-filter="${filter}"]`);
+            if (activeBtn) {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                activeBtn.classList.add('active');
+            }
+
+            paginationState.currentFilter = filter;
+            applyFilterAndPaginate(page);
+        }
+
+        // Apply filter and show page
+        function applyFilterAndPaginate(targetPage = 1) {
+            if (paginationState.animating) return;
+            paginationState.animating = true;
+
+            // Filter cards
+            paginationState.filteredCards = paginationState.allCards.filter(card =>
+                paginationState.currentFilter === 'all' || card.dataset.category === paginationState.currentFilter
+            );
+
+            // Calculate total pages
+            paginationState.totalPages = Math.ceil(paginationState.filteredCards.length / paginationState.itemsPerPage) || 1;
+
+            // Clamp page number
+            targetPage = Math.max(1, Math.min(targetPage, paginationState.totalPages));
+            paginationState.currentPage = targetPage;
+
+            // Get cards for current page
+            const start = (targetPage - 1) * paginationState.itemsPerPage;
+            const end = start + paginationState.itemsPerPage;
+            const pageCards = paginationState.filteredCards.slice(start, end);
+
+            // Lock container height
+            container.style.minHeight = container.offsetHeight + 'px';
+
+            // Hide all filtered cards with animation
+            paginationState.filteredCards.forEach(card => {
+                if (!card.classList.contains('card-collapsed')) {
+                    card.classList.add('card-fade-out');
+                }
+            });
+
+            setTimeout(() => {
+                // Collapse all
+                paginationState.filteredCards.forEach(card => {
+                    card.classList.add('card-collapsed');
+                    card.classList.remove('card-fade-out');
+                });
+
+                // Show page cards
+                setTimeout(() => {
+                    pageCards.forEach(card => {
+                        card.classList.remove('card-collapsed');
+                        card.classList.add('card-fade-in');
+                    });
+
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            pageCards.forEach(card => card.classList.remove('card-fade-in'));
+
+                            // Release height
+                            const targetHeight = container.scrollHeight;
+                            container.style.transition = 'min-height 0.4s ease';
+                            container.style.minHeight = targetHeight + 'px';
+
+                            setTimeout(() => {
+                                container.style.minHeight = '';
+                                container.style.transition = '';
+                                paginationState.animating = false;
+                            }, 420);
+                        });
+                    });
+
+                    // Update UI
+                    updatePaginationUI();
+                    updateURL();
+                }, 50);
+            }, 350);
+        }
+
+        // Update pagination UI
+        function updatePaginationUI() {
+            pageInfo.textContent = `第 ${paginationState.currentPage} 页，共 ${paginationState.totalPages} 页`;
+            prevBtn.disabled = paginationState.currentPage === 1;
+            nextBtn.disabled = paginationState.currentPage === paginationState.totalPages;
+
+            // Render page numbers
+            renderPageNumbers();
+        }
+
+        // Render page number buttons
+        function renderPageNumbers() {
+            pageNumbers.innerHTML = '';
+
+            const maxVisible = 5;
+            let startPage = Math.max(1, paginationState.currentPage - 2);
+            let endPage = Math.min(paginationState.totalPages, startPage + maxVisible - 1);
+
+            if (endPage - startPage < maxVisible - 1) {
+                startPage = Math.max(1, endPage - maxVisible + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const btn = document.createElement('button');
+                btn.className = `hand-drawn bg-white px-3 py-1 font-mono text-sm ${i === paginationState.currentPage ? 'bg-ink text-white' : ''}`;
+                btn.textContent = i;
+                btn.addEventListener('click', () => goToPage(i));
+                pageNumbers.appendChild(btn);
+            }
+        }
+
+        // Go to specific page
+        function goToPage(pageNum) {
+            if (paginationState.animating || pageNum === paginationState.currentPage) return;
+            applyFilterAndPaginate(pageNum);
+        }
+
+        // Update URL params
+        function updateURL() {
+            const params = new URLSearchParams();
+            if (paginationState.currentPage > 1) params.set('page', paginationState.currentPage);
+            if (paginationState.currentFilter !== 'all') params.set('filter', paginationState.currentFilter);
+
+            const newURL = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
+            history.replaceState(null, '', newURL);
+        }
+
+        // Filter button click handlers
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                if (paginationState.animating) return;
+
+                const filter = this.getAttribute('data-filter');
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                paginationState.currentFilter = filter;
+                applyFilterAndPaginate(1); // Reset to page 1 on filter change
+            });
+        });
+
+        // Pagination button handlers
+        prevBtn.addEventListener('click', () => goToPage(paginationState.currentPage - 1));
+        nextBtn.addEventListener('click', () => goToPage(paginationState.currentPage + 1));
+
+        // Initialize on load
+        initPagination();
+    </script>
+</body>
+</html>
