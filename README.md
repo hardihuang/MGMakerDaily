@@ -4,66 +4,109 @@
 
 ## 🎯 项目定位
 
-MG Maker Daily 是一个面向创客教育学习者的每日科技新闻聚合平台，每天精选 3-5 条国内外科技新闻，以"心性升级"的理念引导学习者独立思考。
+MG Maker Daily 是一个面向创客教育学习者的每日科技新闻聚合平台，每天精选科技新闻，以"心性升级"的理念引导学习者独立思考。
+
+## 🔄 自动化流程
+
+```
+OpenClaw定时任务(每天7点) → 搜索科技新闻 → 同步飞书多维表格 → 用户审核确认 → 整理HTML文章 → Push GitHub → GitHub Pages更新
+```
+
+### OpenClaw Skills
+
+| Skill | 功能 | 触发词 |
+|-------|------|--------|
+| `daily-report-feishu` | 每日工作日报发送到飞书 | 日报、daily report |
+| `publish-article` | 文章发布到网站 | 发布文章、publish article |
+
+---
 
 ## ✨ 核心特色
 
 ### 1. 精选内容
-- 每日 3-5 条国内外科技新闻
-- 覆盖 AI、硬件、航天、生物、新能源、机器人等领域
+- 覆盖 AI、硬件、航天、机器人等领域
 - 聚焦对创客有启发的技术突破
 
 ### 2. 独立思考引导
-每条新闻都配有一个**启发性问题**，引导学习者：
+每条新闻配有启发性问题，引导学习者：
 - 思考技术背后的本质
 - 联系自身实际场景
 - 培养创新思维
 
 ### 3. 简洁设计
-- 深色主题，专注阅读
-- 卡片式布局，信息层次清晰
+- 手绘风格卡片布局
+- 分类标签筛选系统
+- **自动分页（每页8篇）**
 - 响应式设计，支持多端访问
 
-## 🎨 设计灵感
-
-本项目设计风格参考 [OpenClaw Hunt](https://yuanhao.github.io/OpenClaw-Hunt/zh/)，采用：
-- 深色背景 + 橙色强调色
-- 卡片式新闻展示
-- 标签分类系统
-- 简洁的导航结构
+---
 
 ## 📁 项目结构
 
 ```
-mg-maker-daily/
-├── index.html          # 首页
-├── README.md           # 项目说明
-└── (更多页面开发中...)
+MGMakerDaily/
+├── github/                      # 网站源码（GitHub Pages）
+│   ├── index.html               # 首页（含分页功能）
+│   ├── article-*.html           # 文章页面（19篇）
+│   ├── template-article.html    # 文章模板
+│   ├── ARTICLE-CHECKLIST.md     # 整理检查清单
+│   ├── publish-article.sh       # 发布脚本
+│   └── cron-morning-news.sh     # 定时任务脚本
+│
+├── daily-report-feishu/         # OpenClaw日报Skill
+│   ├── SKILL.md
+│   └── scripts/daily-report.js
+│
+├── publish-article-skill/       # OpenClaw发布Skill
+│   └── SKILL.md
+│
+└── .learnings/                  # 项目学习记录
 ```
 
-## 🚀 使用方式
+---
 
-1. 直接在浏览器中打开 `index.html`
-2. 或部署到 GitHub Pages 等静态托管服务
+## 📝 文章发布流程
 
-## 📝 内容更新流程
+详见 `publish-article-skill/SKILL.md` 和 `github/ARTICLE-CHECKLIST.md`
 
-1. 每日收集科技新闻（国内外 3-5 篇）
-2. 撰写新闻摘要
-3. 设计启发性问题
-4. 更新 `index.html`
-5. 发布
+### 快速步骤
+
+1. 从飞书表格获取审核通过的文章
+2. 使用 `template-article.html` 生成HTML
+3. 在 `index.html` 添加卡片（最前面）
+4. Git commit & push
+
+### 分页自动处理
+
+首页分页由JavaScript自动处理：
+- 每页显示8篇文章
+- 新卡片自动进入第1页
+- 分类筛选后分页联动
+- 无需手动修改分页代码
+
+---
 
 ## 🎨 配色方案
 
-| 用途 | 色值 |
-|------|------|
-| 主背景 | `#0a0a0f` |
-| 卡片背景 | `#1a1a25` |
-| 强调色 | `#ff6b35` |
-| 次要强调 | `#f7931e` |
-| 主要文字 | `#ffffff` |
-| 次要文字 | `#a0a0b0` |
+| 分类 | 颜色 | Emoji |
+|------|------|-------|
+| 机器人 | `#f59e0b` 琥珀色 | 🤖 |
+| AI | `#8b5cf6` 紫色 | 🧠 |
+| 航天 | `#3b82f6` 蓝色 | 🚀 |
+| 智能硬件 | `#10b981` 绿色 | 🔧 |
+| OpenClaw | `#ff6b35` 橙色 | 🦞 |
+| AI创作 | `#ec4899` 粉色 | 🎬 |
+
+---
+
+## 🚀 本地预览
+
+```bash
+cd /Users/doudou/Documents/mgmakerdaily/github
+open index.html
+```
+
+---
 
 ## 📄 许可证
 
@@ -71,4 +114,4 @@ MIT License
 
 ---
 
-Made with 🫘 by 豆豆 for MG 创客学习者
+Made with 🦞 by OpenClaw + MG豆豆 for MG 创客学习者
