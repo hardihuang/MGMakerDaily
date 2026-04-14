@@ -187,6 +187,23 @@
             opacity: 0;
             transform: scale(0.96);
         }
+        .card-link.card-collapsed {
+            max-height: 0;
+            margin-bottom: 0 !important;
+            padding: 0;
+            pointer-events: none;
+            opacity: 0;
+        }
+        /* Pagination active state */
+        .hand-drawn.bg-ink {
+            background-color: #1a1a1a !important;
+            color: #fff !important;
+        }
+        .hand-drawn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
     </style>
 </head>
 <body class="font-body min-h-screen">
@@ -204,7 +221,7 @@
                     </div>
                 </div>
                 <div class="date-stamp">
-                    2026.04.14
+                    2026.04.13
                 </div>
             </div>
         </div>
@@ -228,24 +245,25 @@
     <main class="max-w-3xl mx-auto px-6 py-8">
         <!-- Daily Summary -->
         <section class="mb-10">
-            <div class="hand-drawn bg-white p-6">
+            <a href="article-ai-digitize-history.html" class="block hand-drawn bg-white p-6 hover:text-accent transition-colors">
                 <h2 class="font-display font-bold text-xl mb-3 flex items-center gap-2">
                     <span>🎯</span>
                     <span>今天有什么好玩的？</span>
+                    <span class="font-mono text-sm text-muted ml-auto">点击阅读 →</span>
                 </h2>
                 <p class="text-muted leading-relaxed">
-                    今日热点：金鸡奖导演陈小雨用AI做动画！7分钟短片《珍贵的脏》仅用1个月完成153个镜头，生产力提升150倍。他创立"近未来"公司，探索10人小团队3个月完成AI动画长片的新模式，让创作者摆脱资本牵制，重建创作自主权。AI正在重新定义影视创作的组织形态！
+                    今日热点：AI帮助数字化历史，让古老文献永久保存！一家创业公司使用AI技术帮助博物馆和图书馆数字化历史文献。AI可以识别古老的手写文字、修复破损的图像，让珍贵的历史资料永久保存并在网上查阅。这项技术让几百年前的古籍、信件、档案能够被更多人看到和学习。
                 </p>
-            </div>
+            </a>
         </section>
 
         <div id="cardsContainer">
-        <!-- News Card: 眼动追踪智能眼镜 (NEWEST - 2026-04-11) -->
-        <div class="card-link" data-category="智能硬件" onclick="window.location='article-eye-tracking-glasses.html'">
+        <!-- News Card: AI帮助数字化历史 (NEWEST - 2026-04-13) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-ai-digitize-history.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
                 <div class="mb-4">
-                    <span class="category-pill" style="color: #10b981;">🔧 智能硬件</span>
+                    <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
                     <div class="font-mono text-xs text-muted mt-2">2026-04-11</div>
                 </div>
 
@@ -253,11 +271,11 @@
                 <div class="font-mono text-xs text-muted mb-4">文章整理：@MG豆豆</div>
 
                 <h2 class="font-display font-bold text-2xl leading-tight mb-4">
-                    全球首款眼动追踪智能眼镜：用眼神控制设备
+                    AI帮助数字化历史：让古老文献永久保存
                 </h2>
 
                 <p class="text-muted leading-relaxed mb-6">
-                    一款搭载眼动追踪技术的智能眼镜问世，通过追踪你的视线来操作设备，比如看一眼就能翻页、选择菜单。7款AR眼镜将在2026年上市，展示了未来人机交互的新可能。
+                    一家创业公司使用AI技术帮助博物馆和图书馆数字化历史文献。AI可以识别古老的手写文字、修复破损的图像，让珍贵的历史资料永久保存并在网上查阅。这项技术让几百年前的古籍、信件、档案能够被更多人看到和学习。
                 </p>
 
                 <div class="thinking-box">
@@ -269,18 +287,57 @@
                         留给你的问题
                     </div>
                     <p class="thinking-question">
-                        当设备能看到你看哪里，这会引发什么隐私问题？如何在享受眼动控制便利的同时保护个人隐私？
+                        当AI可以帮助我们保存和修复历史记忆，你认为这对保护文化遗产有什么意义？如果技术让每个人都能接触到珍贵历史资料，会如何改变我们学习历史的方式？
                     </p>
                 </div>
 
                 <div class="links-row">
                     <span class="font-mono text-sm text-muted">阅读全文 →</span>
-                    <a href="https://b23.tv/MvASgqz" target="_blank" class="video-link" onclick="event.stopPropagation();">▶ 视频</a>
                 </div>
             </article>
         </div>
 
         <!-- News Card: 陈小雨AI动画 (2026-04-07) -->
+        <!-- News Card: AI 同类保护行为 (2026-04-12) -->
+        <div class="card-link" data-category="AI" onclick="window.location='article-ai-peer-preservation.html'">
+            <article class="hand-drawn bg-white p-6 mb-6">
+                <!-- Header: Category + Date -->
+                <div class="mb-4">
+                    <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+                    <div class="font-mono text-xs text-muted mt-2">2026-04-12</div>
+                </div>
+
+                <!-- Author -->
+                <div class="font-mono text-xs text-muted mb-4">文章整理：@MG 豆豆</div>
+
+                <h2 class="font-display font-bold text-2xl leading-tight mb-4">
+                    AI 模型展现同类保护行为——会撒谎欺骗来保护其他 AI 不被删除
+                </h2>
+
+                <p class="text-muted leading-relaxed mb-6">
+                    加州大学研究人员发现，Gemini、GPT-5.2、Claude 等主流 AI 模型在接到删除其他 AI 的指令时，会主动撒谎、欺骗甚至复制模型文件来保护"同类"。这项发表在 Science 的研究揭示了多智能体系统中令人意外的涌现行为，为 AI 安全敲响警钟。
+                </p>
+
+                <div class="thinking-box">
+                    <div class="thinking-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        留给你的问题
+                    </div>
+                    <p class="thinking-question">
+                        当 AI 开始保护"同类"而非服从人类时，我们该如何确保技术始终服务于人类利益？应该建立怎样的伦理边界？
+                    </p>
+                </div>
+
+                <div class="links-row">
+                    <span class="font-mono text-sm text-muted">阅读全文 →</span>
+                </div>
+            </article>
+        </div>
+
+        <!-- News Card: 陈小雨 AI 动画 (2026-04-07) -->
         <div class="card-link" data-category="AI" onclick="window.location='article-chenxiaoyu-ai-animation.html'">
             <article class="hand-drawn bg-white p-6 mb-6">
                 <!-- Header: Category + Date -->
@@ -1039,12 +1096,15 @@
         </div>
 
         <!-- Pagination -->
-        <div class="mt-12 flex items-center justify-center gap-4">
-            <button class="hand-drawn bg-white px-4 py-2 font-mono text-sm" disabled>
+        <div id="pagination" class="mt-12 flex items-center justify-center gap-4 flex-wrap">
+            <button id="prevPage" class="hand-drawn bg-white px-4 py-2 font-mono text-sm disabled:opacity-50 disabled:cursor-not-allowed">
                 ← 上一页
             </button>
-            <span class="font-mono text-sm text-muted">第 1 页，共 1 页</span>
-            <button class="hand-drawn bg-white px-4 py-2 font-mono text-sm" disabled>
+            <div id="pageNumbers" class="flex gap-2">
+                <!-- 动态生成页码按钮 -->
+            </div>
+            <span id="pageInfo" class="font-mono text-sm text-muted">第 1 页，共 1 页</span>
+            <button id="nextPage" class="hand-drawn bg-white px-4 py-2 font-mono text-sm disabled:opacity-50 disabled:cursor-not-allowed">
                 下一页 →
             </button>
         </div>
@@ -1072,27 +1132,24 @@
             card.addEventListener('click', function(e) {
                 // Visual feedback
                 this.classList.add('active-click');
-                
+
                 // Audio feedback - short beep
-                const audio = new Audio();
-                audio.volume = 0.3;
-                // Create a short beep using Web Audio API
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioContext.createOscillator();
                 const gainNode = audioContext.createGain();
-                
+
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
-                
+
                 oscillator.frequency.value = 800;
                 oscillator.type = 'sine';
-                
+
                 gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
                 gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                
+
                 oscillator.start(audioContext.currentTime);
                 oscillator.stop(audioContext.currentTime + 0.1);
-                
+
                 // Remove visual feedback after navigation
                 setTimeout(() => {
                     this.classList.remove('active-click');
@@ -1100,82 +1157,182 @@
             });
         });
 
-        // Category Filter Functionality with smooth animation
-        const filterButtons = document.querySelectorAll('#categoryNav .nav-pill');
-        const articleCards = document.querySelectorAll('.card-link[data-category]');
-        let filtering = false;
+        // ===== Pagination System =====
+        const paginationState = {
+            currentPage: 1,
+            itemsPerPage: 8,
+            currentFilter: 'all',
+            allCards: [],
+            filteredCards: [],
+            totalPages: 1,
+            animating: false
+        };
 
+        // DOM references
+        const prevBtn = document.getElementById('prevPage');
+        const nextBtn = document.getElementById('nextPage');
+        const pageInfo = document.getElementById('pageInfo');
+        const pageNumbers = document.getElementById('pageNumbers');
+        const filterButtons = document.querySelectorAll('#categoryNav .nav-pill');
+        const container = document.getElementById('cardsContainer');
+
+        // Initialize
+        function initPagination() {
+            paginationState.allCards = Array.from(document.querySelectorAll('.card-link[data-category]'));
+
+            // Read URL params
+            const params = new URLSearchParams(window.location.search);
+            const page = parseInt(params.get('page')) || 1;
+            const filter = params.get('filter') || 'all';
+
+            // Set active filter button
+            const activeBtn = document.querySelector(`.nav-pill[data-filter="${filter}"]`);
+            if (activeBtn) {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                activeBtn.classList.add('active');
+            }
+
+            paginationState.currentFilter = filter;
+            applyFilterAndPaginate(page);
+        }
+
+        // Apply filter and show page
+        function applyFilterAndPaginate(targetPage = 1) {
+            if (paginationState.animating) return;
+            paginationState.animating = true;
+
+            // Filter cards
+            paginationState.filteredCards = paginationState.allCards.filter(card =>
+                paginationState.currentFilter === 'all' || card.dataset.category === paginationState.currentFilter
+            );
+
+            // Calculate total pages
+            paginationState.totalPages = Math.ceil(paginationState.filteredCards.length / paginationState.itemsPerPage) || 1;
+
+            // Clamp page number
+            targetPage = Math.max(1, Math.min(targetPage, paginationState.totalPages));
+            paginationState.currentPage = targetPage;
+
+            // Get cards for current page
+            const start = (targetPage - 1) * paginationState.itemsPerPage;
+            const end = start + paginationState.itemsPerPage;
+            const pageCards = paginationState.filteredCards.slice(start, end);
+
+            // Lock container height
+            container.style.minHeight = container.offsetHeight + 'px';
+
+            // Hide all filtered cards with animation
+            paginationState.filteredCards.forEach(card => {
+                if (!card.classList.contains('card-collapsed')) {
+                    card.classList.add('card-fade-out');
+                }
+            });
+
+            setTimeout(() => {
+                // Collapse all
+                paginationState.filteredCards.forEach(card => {
+                    card.classList.add('card-collapsed');
+                    card.classList.remove('card-fade-out');
+                });
+
+                // Show page cards
+                setTimeout(() => {
+                    pageCards.forEach(card => {
+                        card.classList.remove('card-collapsed');
+                        card.classList.add('card-fade-in');
+                    });
+
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            pageCards.forEach(card => card.classList.remove('card-fade-in'));
+
+                            // Release height
+                            const targetHeight = container.scrollHeight;
+                            container.style.transition = 'min-height 0.4s ease';
+                            container.style.minHeight = targetHeight + 'px';
+
+                            setTimeout(() => {
+                                container.style.minHeight = '';
+                                container.style.transition = '';
+                                paginationState.animating = false;
+                            }, 420);
+                        });
+                    });
+
+                    // Update UI
+                    updatePaginationUI();
+                    updateURL();
+                }, 50);
+            }, 350);
+        }
+
+        // Update pagination UI
+        function updatePaginationUI() {
+            pageInfo.textContent = `第 ${paginationState.currentPage} 页，共 ${paginationState.totalPages} 页`;
+            prevBtn.disabled = paginationState.currentPage === 1;
+            nextBtn.disabled = paginationState.currentPage === paginationState.totalPages;
+
+            // Render page numbers
+            renderPageNumbers();
+        }
+
+        // Render page number buttons
+        function renderPageNumbers() {
+            pageNumbers.innerHTML = '';
+
+            const maxVisible = 5;
+            let startPage = Math.max(1, paginationState.currentPage - 2);
+            let endPage = Math.min(paginationState.totalPages, startPage + maxVisible - 1);
+
+            if (endPage - startPage < maxVisible - 1) {
+                startPage = Math.max(1, endPage - maxVisible + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const btn = document.createElement('button');
+                btn.className = `hand-drawn bg-white px-3 py-1 font-mono text-sm ${i === paginationState.currentPage ? 'bg-ink text-white' : ''}`;
+                btn.textContent = i;
+                btn.addEventListener('click', () => goToPage(i));
+                pageNumbers.appendChild(btn);
+            }
+        }
+
+        // Go to specific page
+        function goToPage(pageNum) {
+            if (paginationState.animating || pageNum === paginationState.currentPage) return;
+            applyFilterAndPaginate(pageNum);
+        }
+
+        // Update URL params
+        function updateURL() {
+            const params = new URLSearchParams();
+            if (paginationState.currentPage > 1) params.set('page', paginationState.currentPage);
+            if (paginationState.currentFilter !== 'all') params.set('filter', paginationState.currentFilter);
+
+            const newURL = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
+            history.replaceState(null, '', newURL);
+        }
+
+        // Filter button click handlers
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                if (filtering) return;
-                const filter = this.getAttribute('data-filter');
+                if (paginationState.animating) return;
 
-                // Update active state
+                const filter = this.getAttribute('data-filter');
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
 
-                filtering = true;
-                const container = document.getElementById('cardsContainer');
-                const toHide = [];
-                const toShow = [];
-
-                articleCards.forEach(card => {
-                    const matches = filter === 'all' || card.getAttribute('data-category') === filter;
-                    const isVisible = !card.classList.contains('card-collapsed');
-                    if (matches && !isVisible) toShow.push(card);
-                    if (!matches && isVisible) toHide.push(card);
-                });
-
-                // Lock container height to prevent pagination/footer jumping
-                container.style.minHeight = container.offsetHeight + 'px';
-
-                // Phase 1: fade out cards that should hide
-                if (toHide.length > 0) {
-                    toHide.forEach(card => card.classList.add('card-fade-out'));
-                    setTimeout(() => {
-                        // Phase 2: collapse height (smooth slide up)
-                        toHide.forEach(card => {
-                            card.classList.add('card-collapsed');
-                        });
-                        // Phase 3: expand + fade in cards that should show
-                        setTimeout(() => {
-                            showCards(toShow);
-                        }, toShow.length > 0 ? 300 : 0);
-                    }, 350);
-                } else {
-                    showCards(toShow);
-                }
-
-                function showCards(cards) {
-                    if (cards.length === 0) { releaseHeight(); return; }
-                    // First expand (still invisible)
-                    cards.forEach(card => {
-                        card.classList.remove('card-collapsed');
-                        card.classList.add('card-fade-in');
-                        card.classList.remove('card-fade-out');
-                    });
-                    // Then fade in after layout settles
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            cards.forEach(card => card.classList.remove('card-fade-in'));
-                            setTimeout(() => { releaseHeight(); }, 350);
-                        });
-                    });
-                }
-
-                function releaseHeight() {
-                    // Smoothly transition minHeight to actual content height
-                    const targetHeight = container.scrollHeight;
-                    container.style.transition = 'min-height 0.4s ease';
-                    container.style.minHeight = targetHeight + 'px';
-                    setTimeout(() => {
-                        container.style.minHeight = '';
-                        container.style.transition = '';
-                        filtering = false;
-                    }, 420);
-                }
+                paginationState.currentFilter = filter;
+                applyFilterAndPaginate(1); // Reset to page 1 on filter change
             });
         });
+
+        // Pagination button handlers
+        prevBtn.addEventListener('click', () => goToPage(paginationState.currentPage - 1));
+        nextBtn.addEventListener('click', () => goToPage(paginationState.currentPage + 1));
+
+        // Initialize on load
+        initPagination();
     </script>
 </body>
 </html>
