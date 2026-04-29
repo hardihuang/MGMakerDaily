@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek V4发布：国产AI大模型实现百万上下文突破 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'ai': '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.04.29</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation: 只保留返回首页按钮，不要添加任何分类标签 -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-04-27</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">DeepSeek V4发布：国产AI大模型实现百万上下文突破</h1>
+            <p class="text-muted text-lg leading-relaxed">DeepSeek发布V4版本大模型，拥有1.6万亿参数，支持1M（百万字）上下文长度，在Agent能力、推理性能上达到国际领先水平。这是国产开源AI的重大突破，为青少年学习AI编程提供了强大的国产工具。</p>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+            <!-- 前沿聚焦 -->
+            <h2>【🔍 前沿聚焦】</h2>
+            
+            <h3>背景痛点</h3>
+            <p>传统大语言模型在处理长文档时面临巨大挑战。当用户需要分析一本完整的书籍、大型代码库或长篇报告时，普通AI模型往往只能"记住"几千到几万字的内容，超出部分就会被"遗忘"。这限制了AI在学术研究、法律分析、代码审查等场景的应用。</p>
+            
+            <h3>技术突破原理</h3>
+            <p>DeepSeek-V4开创全新注意力机制，结合DSA稀疏注意力技术，实现全球领先的长上下文能力。V4-Pro版本在Agent Coding评测中达到当前开源模型最佳水平，内部测评体验优于Sonnet 4.5，交付质量接近Opus 4.6。</p>
+            <p>V4采用MoE（混合专家）架构，Pro版本1.6T参数、49B激活，Flash版本284B参数、13B激活。核心技术创新包括：token维度压缩的注意力机制、DSA稀疏注意力（DeepSeek Sparse Attention），以及1M上下文窗口支持。</p>
+            
+            <h3>现实应用价值</h3>
+            <p>这一突破意味着AI可以一次性处理整本书籍、大型项目代码库或百万字的法律文档。对于青少年学习者来说，这意味着可以使用国产AI工具进行更复杂的编程学习、文档分析和知识整理，不再受限于国外闭源模型的使用限制。</p>
+
+            <!-- 核心科技关键词 -->
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 核心科技关键词</div>
+                <p><strong>大语言模型（Large Language Model / LLM）</strong>：基于深度学习的自然语言处理模型，能够理解和生成人类语言，是ChatGPT等AI产品的核心技术。</p>
+                <p><strong>MoE架构（Mixture of Experts / 混合专家）</strong>：将模型分为多个专家网络，按需激活提高效率。就像医院里有不同科室的专家，根据病情自动匹配最合适的医生。</p>
+                <p><strong>稀疏注意力（Sparse Attention）</strong>：只关注重要信息，降低计算成本。就像人类阅读时会抓重点，而不是逐字逐句都同等对待。</p>
+                <p><strong>Agent（智能体）</strong>：能自主执行任务的AI程序，可以调用工具、完成复杂工作流程。</p>
+                <p><strong>上下文窗口（Context Window）</strong>：模型能同时处理的文本长度。1M上下文意味着可以一次性输入约150万汉字或100万英文单词。</p>
+            </div>
+
+            <!-- ICC 赛事思维预演 -->
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li><strong>定义与调研：</strong>什么是大语言模型的上下文窗口？为什么DeepSeek V4的1M上下文长度是一个重要突破？</li>
+                <li><strong>创新与差异：</strong>DeepSeek V4与OpenAI的GPT-4、Claude等闭源模型相比有什么优势？国产开源AI模型对青少年学习有什么特殊意义？</li>
+                <li><strong>测试与迭代：</strong>如果你是DeepSeek的测试工程师，你会如何测试这个模型的长上下文能力？请设计一个测试方案。</li>
+            </ul>
+
+            <!-- 科技向善问题 -->
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    💬 留给你的问题：科技向善
+                </div>
+                <p>如果让你用DeepSeek V4开发一个帮助中学生学习编程的AI助手，你会设计哪些功能？请画出功能架构图并说明原理。</p>
+            </div>
+
+            <!-- 原文出处 -->
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://www.36kr.com/p/3780290045121801" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">DeepSeek V4终于发布，打破最强闭源垄断，明确携手华为芯片 →</a>
+                <div class="text-sm text-muted">DeepSeek V4终于发布，打破最强闭源垄断</div>
+                <div class="font-mono text-xs text-muted mt-2">36氪/量子位</div>
+            </div>
+        </article>
+
+        <!-- Back Link -->
+        <div class="mt-12 pt-8 border-t-2 border-ink/20">
+            <a href="index.html" class="back-link">← 返回首页，查看更多科技新闻</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm text-muted">MG Maker Daily — 给小小创客的科技新闻</p>
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">首页</a>
+                    <a href="about.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">关于我们</a>
+                    <a href="submit.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">投稿</a>
+                    <a href="https://github.com/hardihuang/MGMakerDaily" target="_blank" class="font-mono text-sm text-muted hover:text-ink transition-colors">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
