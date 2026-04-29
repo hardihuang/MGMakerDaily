@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球首款眼动追踪智能眼镜：用眼神控制设备 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'hardware': '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.04.13</div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <div class="mb-8">
+            <span class="category-pill" style="color: #10b981;">🔧 智能硬件</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-04-11</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">全球首款眼动追踪智能眼镜：用眼神控制设备</h1>
+            <p class="text-muted text-lg leading-relaxed">一款搭载眼动追踪技术的智能眼镜问世，通过追踪你的视线来操作设备，比如看一眼就能翻页、选择菜单。</p>
+        </div>
+
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1mnw7zSEED&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;"></iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">📺 视频：<a href="https://b23.tv/MvASgqz" target="_blank" class="underline">全球首款眼动追踪智能眼镜体验 - 哔哩哔哩</a></p>
+        </div>
+
+        <article class="article-content">
+            <h2>【前沿聚焦】</h2>
+            <p>传统人机交互依赖手和语音，但眼动追踪开辟了全新维度。这项技术通过微型摄像头追踪眼球运动，识别用户注视的位置和时长。对于行动不便者、双手忙碌场景、以及追求极致效率的用户，眼动控制提供了全新的交互方式。</p>
+            <p>这款全球首款眼动追踪智能眼镜，通过红外光和摄像头追踪眼球运动，让设备能够"看懂"你的视线。比如看一眼就能翻页、选择菜单，甚至可以用眼神来玩游戏。7款AR眼镜将在2026年上市，包括Meta的Ray-Ban新款，展示了未来人机交互的新可能。</p>
+            <p>这项技术的突破，意味着未来的智能设备可以真正实现"眼神交流"，让人机交互更加自然和高效。</p>
+
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 本期科技关键词</div>
+                <h3>眼动追踪 (Eye Tracking)</h3>
+                <p>通过红外光和摄像头追踪眼球运动的技术。AR（增强现实）是在真实世界叠加数字信息的显示技术。人机交互研究人与计算机如何交流。</p>
+            </div>
+
+            <h2>【💡 创科启发：ICC思维预演】</h2>
+            <p>如果你准备带着"眼动控制设备方案"参加下一届全球发明大会（ICC），请按照标准的发明历程，在大脑中完成以下预演：</p>
+            <ul>
+                <li><strong>定义与理解：</strong>眼动追踪技术还能帮助哪些特殊人群？（如阅读障碍者、自闭症儿童、老年人等）如何设计适合他们的应用？</li>
+                <li><strong>原创与竞品：</strong>相比于语音控制和手势控制，眼动控制有什么独特优势？在什么场景下它不如其他方式？</li>
+                <li><strong>测试与优化：</strong>如果眼动追踪误识别了你的视线，导致误操作，你会如何改进？（如校准机制、确认延迟、多模态融合等）</li>
+            </ul>
+
+            <div class="question-box">
+                <div class="question-title">💬 留给你的问题：科技向善</div>
+                <p>当设备能看到你看哪里，这会引发什么隐私问题？如何在享受眼动控制便利的同时保护个人隐私？如果未来所有设备都能用眼动控制，你希望最先实现什么功能？</p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://gizmodo.com/the-worlds-first-eye-tracking-smart-glasses-are-intriguing-and-unpolished-2000743475" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">The World's First Eye-Tracking Smart Glasses Are Intriguing and Unpolished →</a>
+                <div class="text-sm text-muted">全球首款眼动追踪智能眼镜：引人入胜但尚需打磨</div>
+                <div class="font-mono text-xs text
