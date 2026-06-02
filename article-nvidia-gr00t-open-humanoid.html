@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英伟达发布首款开源人形机器人：宇树H2身体+GR00T大脑，统一标准时代来了 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'robot': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.06.02</div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <div class="mb-8">
+            <span class="category-pill" style="color: #f59e0b;">🤖 机器人</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-06-01</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">英伟达发布首款开源人形机器人：宇树H2身体+GR00T大脑，统一标准时代来了</h1>
+            <p class="text-muted text-lg leading-relaxed">英伟达在GTC Taipei 2026发布Isaac GR00T参考人形机器人——首款开源人形机器人参考设计，整合宇树H2 Plus机器人身体、Sharpa五指灵巧手、Jetson Thor车载AI芯片和GR00T开放软件栈。黄仁勋称物理AI将是数万亿美元市场，斯坦福、ETH苏黎世等顶尖机构已确认采用。这标志着人形机器人从"各自造车"走向统一标准。</p>
+        </div>
+
+        <article class="article-content">
+            <h2>【🔍 前沿聚焦】</h2>
+            <p>人形机器人研发长期面临"碎片化"困境：硬件集成、数据采集、仿真训练、模型部署等环节各自为战，研究者需要耗费大量时间在底层搭建上，而非专注于AI算法创新。每个实验室都在重复造轮子——自己设计电路、自己写驱动、自己搭仿真环境，效率极低。</p>
+            <p>英伟达在GTC Taipei 2026大会上发布Isaac GR00T参考人形机器人，首次将"身体"和"大脑"统一打包：宇树H2 Plus人形机器人（1.8米高、68公斤、31个自由度）+ Sharpa五指触觉手（每只手25个自由度）+ Jetson Thor车载计算平台（Blackwell GPU）+ Isaac GR00T开放软件栈。斯坦福、ETH苏黎世、UC圣地亚哥等顶尖机构已确认采用。</p>
+            <p>黄仁勋在演讲中说："我们为高等教育和大学研究者打造了这个平台，因为让他们自己从头搭建这些简直太难了。"他预测物理AI将是"数万亿美元"市场。这一举措标志着人形机器人从"各自造车"走向"统一标准"，就像当年PC产业从分散走向IBM兼容机标准一样，有望大幅降低研发门槛，加速整个行业进步。</p>
+
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 核心科技关键词</div>
+                <p><strong>参考设计 (Reference Design)</strong></p>
+                <p>厂商提供的完整技术方案蓝图，包含硬件规格、软件架构和集成指南，让开发者无需从零搭建就能快速开发产品。就像你可以按照建筑图纸盖房子，不需要自己设计每一个螺丝钉。</p>
+                <p><strong>开源机器人平台 (Open Robot Platform)</strong></p>
+                <p>硬件设计和软件代码公开共享的机器人开发平台，任何人都可以使用、修改和贡献代码，类似于软件领域的开源项目。这意味着全世界的聪明人可以一起改进同一个机器人，速度比一家公司自己干快得多。</p>
+            </div>
+
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li><strong>定义与调研：</strong>除了学术研究，开放参考设计的人形机器人平台还能帮助哪些人群？（如中小企业、独立开发者、职业学校）他们最需要什么样的开源机器人平台？</li>
+                <li><strong>创新与差异：</strong>相比于特斯拉Optimus和波士顿动力Atlas的封闭系统，NVIDIA开放参考设计的策略有什么优势和风险？开放生态和封闭生态，哪种更能推动人形机器人发展？</li>
+                <li><strong>测试与迭代：</strong>如果研究者用这个平台训练的机器人在真实环境中表现不如仿真，你会如何设计从仿真到现实的迁移测试方案？（域随机化、渐进式暴露、真实数据微调？）</li>
+            </ul>
+
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    💬 留给你的问题：科技向善
+                </div>
+                <p>当人形机器人有了统一的开源平台，就像智能手机有了Android系统，你觉得这会加速机器人走进日常生活吗？如果你是研究者，你会用这个平台开发什么样的机器人能力？</p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://nvidianews.nvidia.com/news/nvidia-open-humanoid-robot-reference-design" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">NVIDIA Announces Isaac GR00T Reference Humanoid Robot →</a>
+                <div class="text-sm text-muted">英伟达发布Isaac GR00T参考人形机器人</div>
+                <div class="font-mono text-xs text-muted mt-2">NVIDIA Newsroom / CNBC</div>
+            </div>
+        </article>
+
+        <div class="mt-12 pt-8 border-t-2 border-ink/20">
+            <a href="index.html" class="back-link">← 返回首页，查看更多科技新闻</a>
+        </div>
+    </main>
+
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm text-muted">MG Maker Daily — 给小小创客的科技新闻</p>
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">首页</a>
+                    <a href="about.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">关于我们</a>
+                    <a href="submit.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">投稿</a>
+                    <a href="https://github.com/hardihuang/MGMakerDaily" target="_blank" class="font-mono text-sm text-muted hover:text-ink transition-colors">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
