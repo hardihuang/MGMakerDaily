@@ -1,0 +1,9 @@
+{
+  "app_id": "cli_aaaba5837eb95cfa",
+  "app_secret": "l3SMAbmc8ag9RQ4UWPR7hblV5MFCw0pd",
+  "class_groups": {
+    "oc_ef8b105de4dbedab359e255f56dd4ddb": "周六11点：man群"
+  },
+  "site_url": "https://hardihuang.github.io/MGMakerDaily",
+  "push_schedule": "每3天，与文章发布同步"
+}
