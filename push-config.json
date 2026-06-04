@@ -1,6 +1,8 @@
 {
   "app_id": "cli_aaaba5837eb95cfa",
   "app_secret": "l3SMAbmc8ag9RQ4UWPR7hblV5MFCw0pd",
+  "bitable_app_token": "GpMvbgnQta9ISpsywtrca6lTnvb",
+  "bitable_table_name": "推送群管理",
   "class_groups": {
     "oc_ef8b105de4dbedab359e255f56dd4ddb": "周六11点：man群"
   },
