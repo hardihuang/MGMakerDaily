@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft量子芯片Majorana 2：AI帮科学家设计出1000倍更可靠的量子芯片 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'ai': '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+        .knowledge-box { background: #fff; border: 2px solid #8b5cf6; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; }
+        .knowledge-box .knowledge-title { font-family: 'Courier Prime', monospace; font-size: 0.9rem; color: #8b5cf6; margin-bottom: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.06.07</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation: 只保留返回首页按钮，不要添加任何分类标签 -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-06-07</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">Microsoft量子芯片Majorana 2：AI帮科学家设计出1000倍更可靠的量子芯片</h1>
+            <p class="text-muted text-lg leading-relaxed">Microsoft发布了新一代量子芯片Majorana 2，这次的设计居然是在AI智能体团队的帮助下完成的！新芯片的可靠性提升了1000倍，他们计划在2029年拥有可以实际工作的量子计算机，比原计划提前了好几年。</p>
+        </div>
+
+        <!-- Video Embed -->
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe
+                    src="https://player.bilibili.com/player.html?bvid=BV1mwtmzeEaf&page=1&high_quality=1&danmaku=0&autoplay=0"
+                    width="100%"
+                    height="400"
+                    frameborder="0"
+                    allowfullscreen
+                    style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">
+                📺 视频：<a href="https://www.bilibili.com/video/BV1mwtmzeEaf" target="_blank" style="color: #ff6b35;">Microsoft量子芯片Majorana 2讲解 - 哔哩哔哩</a>
+            </p>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+            <!-- 前沿聚焦 -->
+            <h2>【🔍 前沿聚焦】</h2>
+            
+            <h3>量子计算 vs 传统计算</h3>
+            <p>量子计算机和普通电脑最大的区别在于，普通电脑用0和1计算，一次只能算一种可能；而量子计算机可以同时算无数种可能，所以解决某些问题的速度快到离谱。</p>
+            
+            <h3>拓扑量子比特的创新</h3>
+            <p>Microsoft的Majorana 2采用了一种叫'拓扑量子比特'的特殊结构，比传统量子比特更稳定、不容易出错。这种结构就像打了结的绳子一样稳定，不容易受外界干扰。</p>
+            
+            <h3>AI辅助科研的新范式</h3>
+            <p>更有趣的是，这次设计过程中使用了AI智能体团队（Microsoft Discovery），AI帮助科学家分析了数十年量子研究的资料、找到了最适合的材料、自动测试了各种制造工艺——AI不只是被制造的工具，它反过来帮人类做科研了！这是AI辅助科学研究的新范式。</p>
+            
+            <!-- 小知识板块 -->
+            <div class="knowledge-box">
+                <div class="knowledge-title">📗 小知识：摩尔定律</div>
+                <p>过去60年，芯片的发展一直遵循英特尔创始人戈登·摩尔提出的规律：芯片上的晶体管数量大约每18-24个月翻一番，性能翻倍、价格减半。你的手机、电脑越来越强，靠的就是这个定律。但近年来，芯片已经走到3纳米、2纳米的物理极限，晶体管小到只有几个原子大小，再缩小变得极其困难且昂贵。</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <div class="knowledge-title">📗 小知识：华为韬(τ)定律</div>
+                <p>2026年5月25日，华为在IEEE国际电路系统研讨会上提出了全新的'韬(τ)定律'。华为提出了一条新路：不再死磕把晶体管做小，而是通过'逻辑折叠'等技术，从时间维度压缩信号传输时延，系统性提升芯片性能。这是从'几何缩微'到'时间缩微'的转变。华为已经基于这个定律设计了381款芯片，预计2031年达到等效1.4纳米制程。</p>
+            </div>
+            
+            <div class="knowledge-box">
+                <div class="knowledge-title">📗 小知识：量子计算</div>
+                <p>传统芯片（无论是摩尔定律还是韬定律）最终都会遇到物理极限。但量子计算机完全不依赖芯片尺寸——它用量子比特（qubit）替代传统比特，利用'叠加态'同时处理无数种可能性，是突破算力瓶颈的全新路径！</p>
+            </div>
+
+            <!-- 核心科技关键词 -->
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 核心科技关键词</div>
+                <p><strong>量子计算（Quantum Computing）</strong>：利用量子力学原理进行计算，可以同时处理多种可能性。</p>
+                <p><strong>拓扑量子比特（Topological Qubit）</strong>：一种特殊的量子比特结构，像打了结的绳子一样稳定，不容易受外界干扰。</p>
+                <p><strong>AI辅助科研（AI-Assisted Research）</strong>：使用AI智能体帮助科学家分析数据、设计实验、优化工艺，是科学研究的新范式。</p>
+            </div>
+
+            <!-- ICC 赛事思维预演 -->
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li><strong>定义与调研：</strong>什么是量子比特？为什么拓扑量子比特比传统量子比特更可靠？Majorana 2的1000倍可靠性提升意味着什么？</li>
+                <li><strong>创新与差异：</strong>Microsoft的Majorana 2与其他量子芯片（如Google的Sycamore、IBM的量子处理器）有什么不同？AI辅助科研对科学研究有什么革命性意义？</li>
+                <li><strong>测试与迭代：</strong>如果你是Microsoft的工程师，如何测试拓扑量子比特的稳定性？请设计一个测试方案来验证1000倍可靠性提升。</li>
+            </ul>
+
+            <!-- 科技向善问题 -->
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    💬 留给你的问题：科技向善
+                </div>
+                <p>1. 摩尔定律说芯片每18-24个月翻一番，现在已经到物理极限了——你觉得未来芯片还能怎么突破？</p>
+                <p>2. 华为的韬定律提出'从做小改成做快'，你觉得这个思路有什么厉害的地方？</p>
+                <p>3. 如果量子计算机比现在的电脑快一亿倍，你希望用它来解决什么问题？</p>
+            </div>
+
+            <!-- 原文出处 -->
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://news.microsoft.com/source/features/innovation/majorana-2-microsoft-discovery-agentic-ai/" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">How Microsoft's new quantum chip was made 1,000x more reliable with the help of agentic AI →</a>
+                <div class="text-sm text-muted">Microsoft新一代量子芯片Majorana 2的突破</div>
+                <div class="font-mono text-xs text-muted mt-2">Microsoft News</div>
+            </div>
+        </article>
+
+        <!-- Back Link -->
+        <div class="mt-12 pt-8 border-t-2 border-ink/20">
+            <a href="index.html" class="back-link">← 返回首页，查看更多科技新闻</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <p class="font-mono text-sm text-muted">MG Maker Daily — 给小小创客的科技新闻</p>
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">首页</a>
+                    <a href="about.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">关于我们</a>
+                    <a href="submit.html" class="font-mono text-sm text-muted hover:text-ink transition-colors">投稿</a>
+                    <a href="https://github.com/hardihuang/MGMakerDaily" target="_blank" class="font-mono text-sm text-muted hover:text-ink transition-colors">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
