@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceX上市！从三次爆炸到2万亿美元——一个"傻子"的20年 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'space': '#1a1a2e',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .spirit-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .spirit-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .timeline-item { padding: 10px 0 10px 30px; border-left: 2px solid #1a1a1a; position: relative; margin-left: 10px; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 16px; width: 10px; height: 10px; border-radius: 50%; background: #ff6b35; }
+        .timeline-item.fail::before { background: #ef4444; }
+        .timeline-item.ok::before { background: #22c55e; }
+        .timeline-year { font-family: 'Courier Prime', monospace; font-size: 0.8rem; font-weight: 700; color: #6b6b6b; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+        .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+        @media (max-width: 600px) { .video-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.06.13</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill" style="color: #1a1a2e;">🚀 航天</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-06-13</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆 · 来源：CNBC / Reuters / SpaceNews</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">SpaceX上市！从三次爆炸到2万亿美元<br>——一个"傻子"的20年</h1>
+            <p class="text-muted text-lg leading-relaxed">
+                2026年6月12日，SpaceX在纳斯达克上市，市值超2.1万亿美元，成为人类历史上最大的IPO。但20年前，这家公司连续三次火箭爆炸、账上只剩几周的钱，所有人都说马斯克是个"傻子"。什么力量让一个"连火箭都造不出来"的公司，最终成为全球最有价值的科技公司之一？
+            </p>
+        </div>
+
+        <!-- Main Video: 马斯克SpaceX从失败到成功 -->
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1zMGJ6QEpe&page=1&high_quality=1&danmaku=0&autoplay=0"
+                    width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">
+                📺 <a href="https://www.bilibili.com/video/BV1zMGJ6QEpe" target="_blank" class="underline">马斯克SpaceX从失败到成功 — 一部4分钟的浓缩史</a>
+            </p>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+
+            <!-- 前沿聚焦 -->
+            <h2>【🔍 前沿聚焦】</h2>
+            <p><strong>今天的新闻：</strong>2026年6月12日，SpaceX正式在纳斯达克上市，股票代码SPCX。开盘价150美元，收盘160.95美元，涨幅19.2%。公司市值突破2.1万亿美元，成为全球第六大市值公司。这次IPO融资750亿美元，是历史上最大规模的IPO——是第二名阿里巴巴（2014年融资250亿美元）的3倍。</p>
+
+            <p><strong>一个数字更惊人：</strong>SpaceX上市后，直接创造了约4400个百万富翁——这些不是华尔街的投资人，而是SpaceX的普通员工。工程师、焊接工、测试员……那些曾经坐在发射台旁、看着火箭爆炸后默默收拾残骸的人，一夜之间变成了百万富翁。</p>
+
+            <p><strong>但你知道吗？</strong>20年前，没有人相信这家公司能活下来。</p>
+
+            <!-- 从10%到2万亿：一个"傻子"的信仰 -->
+            <h2>【💪 从10%到2万亿：一个"傻子"的信仰】</h2>
+
+            <p>2002年，马斯克创立SpaceX。他的目标很奇怪：让人类成为"多星球物种"——去火星。</p>
+            <p>当时所有人都笑了。造火箭？那是国家干的事。NASA造一次火箭要几十亿美元，你一个互联网出身的"外行"凭什么？</p>
+
+            <div class="spirit-box">
+                <div class="spirit-title">🔥 马斯克的原话</div>
+                <p style="font-style: italic; margin-bottom: 0;">
+                    "我给了SpaceX不到10%的成功概率。如果有人告诉我最后会是这样，我会觉得你一定是抽了什么好烟。<strong>因为我觉得这家公司一定会失败。</strong>"
+                </p>
+                <p style="margin-top: 12px; font-size: 0.85rem; color: #6b6b6b;">——马斯克在IPO庆祝会上的发言，2026年6月12日</p>
+            </div>
+
+            <p>这是一个很关键的认识：<strong>马斯克从一开始就知道大概率会失败。</strong>他不是因为"肯定能成"才做的，而是因为"这件事值得做"才做的。如果只有"肯定能成"的事才有人做，那人类可能还蹲在洞穴里。</p>
+
+            <!-- 三次爆炸 -->
+            <h3>🔴 三次爆炸：当全世界都在等着看你笑话</h3>
+
+            <div class="timeline-item fail">
+                <div class="timeline-year">2006年3月24日 · 第一次发射</div>
+                <p>猎鹰1号首飞。<strong>发射后25秒，燃料泄漏导致发动机起火，火箭坠毁。</strong>没人说什么，第一次嘛，正常。</p>
+            </div>
+            <div class="timeline-item fail">
+                <div class="timeline-year">2007年3月21日 · 第二次发射</div>
+                <p>火箭顺利升空。但第二级分离后姿态失控，<strong>在空中翻滚解体。</strong>开始有人摇头了。</p>
+            </div>
+            <div class="timeline-item fail">
+                <div class="timeline-year">2008年8月3日 · 第三次发射</div>
+                <p>这是最后一次机会。火箭起飞后正常飞行。但在第一级分离时，<strong>残余推力导致第一级撞上第二级，发射失败。</strong>马斯克后来回忆："我当时站在控制室，感觉整个世界都塌了。"</p>
+            </div>
+
+            <p>三次发射，三次爆炸。SpaceX的钱花光了。<strong>账上只剩够再试一次的钱。</strong></p>
+
+            <p>媒体开始写"马斯克的太空梦破碎了"、"又一个硅谷骗子"。竞争对手波音和洛马的人笑着说："早就告诉你了，造火箭不是闹着玩的。"</p>
+
+            <!-- 第四次的逆转 -->
+            <h3>🟢 第四次：绝境中的光芒</h3>
+
+            <div class="timeline-item ok">
+                <div class="timeline-year">2008年9月28日 · 第四次发射</div>
+                <p><strong>猎鹰1号成功进入轨道。</strong>这是人类历史上第一枚由私人公司开发的液体燃料火箭成功入轨。SpaceX活下来了。</p>
+            </div>
+
+            <p>两个月后，NASA送来了一份16亿美元的合同——给国际空间站送货。消息传来，SpaceX办公室里一片哭喊声。<strong>从濒临破产到拿到NASA大单，只隔了一次成功发射的距离。</strong></p>
+
+            <!-- Video: 三次发射失败完整流程 -->
+            <div class="hand-drawn bg-white p-2 mb-6">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1UpfFYPEvP&page=1&high_quality=1&danmaku=0&autoplay=0"
+                    width="100%" height="380" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-2 mb-6 text-center">
+                📺 <a href="https://www.bilibili.com/video/BV1UpfFYPEvP" target="_blank" class="underline">猎鹰一号前三次发射失败完整流程 — 航天迷必看</a>
+            </p>
+
+            <!-- 工程师精神 -->
+            <h2>【🧠 工程师的"傻气"：拆解马斯克和他的造火箭哲学】</h2>
+
+            <p>很多人把SpaceX的成功归结为"马斯克是个天才"。但如果你仔细看，你会发现他做的事情其实很"笨"——</p>
+
+            <h3>1️⃣ 第一性原理的"笨办法"</h3>
+            <p>当NASA买一个火箭阀门要100万美元时，马斯克问："这个阀门的材料成本是多少？"答案是——5000美元。他直接自己造。</p>
+            <p>别人说"造火箭就是要花这么多钱"，他说"为什么？"<strong>这就是"第一性原理"：回到物理本质，而不是接受行业惯例。</strong></p>
+
+            <h3>2️⃣ 失败不是终点，是数据</h3>
+            <p>三次爆炸，SpaceX做了什么？每次爆炸后，工程师们把残骸捡回来，分析数据，下一次改进。<strong>对工程师来说，失败不是"丢脸"，而是"得到了新的数据"。</strong></p>
+            <p>马斯克说："如果你没有失败过，说明你不够努力。"</p>
+
+            <h3>3️⃣ 愿力大于能力</h3>
+            <p>"让人类成为多星球物种"——20年前这个目标听起来像科幻小说。但正是这个"看起来不可能的目标"，支撑SpaceX活过了三次爆炸、无数次濒临破产。</p>
+            <p><strong>愿力的作用不是"保证成功"，而是"让你在所有人都说不行的时候，还能继续往前走"。</strong></p>
+
+            <h3>4️⃣ 不服输的"小孩子气"</h3>
+            <p>马斯克在SpaceX有个外号叫"Chief Designer"（总设计师）。他不是坐在办公室里指挥，而是真的和工程师们一起画图、一起讨论焊接方法、一起在发射台熬夜。</p>
+            <p>有人问他为什么这么拼命，他说："<strong>因为我怕如果我不盯着，火箭就会掉下来。</strong>"这种"谁都不放心，必须自己来"的劲头，很"工程师"。</p>
+
+            <!-- 从造火箭到造万亿美元 -->
+            <h2>【📈 从造火箭到造万亿美元：SpaceX做了哪些"不可能"的事？】</h2>
+
+            <ul>
+                <li><strong>2008年</strong> —— 猎鹰1号成功入轨（第一枚私人液体燃料火箭）</li>
+                <li><strong>2010年</strong> —— 龙飞船成功发射和回收（第一艘私人航天器）</li>
+                <li><strong>2015年</strong> —— 猎鹰9号第一级成功着陆回收（历史首次）</li>
+                <li><strong>2017年</strong> —— 首次使用回收火箭再次发射</li>
+                <li><strong>2020年</strong> —— 首次将宇航员送入太空（自航天飞机退役后第一次由美国火箭做到）</li>
+                <li><strong>2023年</strong> —— 星舰首次完整入轨测试</li>
+                <li><strong>2025年</strong> —— 星链用户突破1000万</li>
+                <li><strong>2026年</strong> —— 星舰成功回收、IPO上市、总市值2.1万亿美元</li>
+            </ul>
+
+            <p>20年间，SpaceX把火箭发射的成本从每公斤上万美元降到了每公斤约1500美元。它证明了：<strong>工程不是靠"背景"和"资源"的，是靠"不认输"和"持续迭代"的。</strong></p>
+
+            <!-- Video: SpaceX上市马斯克演讲 -->
+            <div class="hand-drawn bg-white p-2 mb-6">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1EJJ56sEEP&page=1&high_quality=1&danmaku=0&autoplay=0"
+                    width="100%" height="380" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-2 mb-6 text-center">
+                📺 <a href="https://www.bilibili.com/video/BV1EJJ56sEEP" target="_blank" class="underline">SpaceX上市！马斯克激动感言："我们要送你去太空生活"</a>
+            </p>
+
+            <!-- 核心科技关键词 -->
+            <div class="spirit-box">
+                <div class="spirit-title">🔑 核心启示：工程师精神</div>
+                <p><strong>第一性原理 (First Principles)</strong></p>
+                <p>把复杂问题拆解到最基础的物理原理，而不是接受"别人都是这么做的"。马斯克问的不是"历史上造火箭要多少钱"，而是"造火箭的原材料要多少钱"。前者是经验，后者是物理。</p>
+                <p style="margin-top: 1rem;"><strong>愿力驱动的工程实践</strong></p>
+                <p>不是"因为有资源才做"，而是"因为这件事值得做，所以去创造资源"。愿力（强烈的使命感）是支撑长期工程挑战的核心动力——它比能力、资金、人脉都重要。</p>
+                <p style="margin-top: 1rem;"><strong>失败迭代 (Fail Forward)</strong></p>
+                <p>每次失败都是数据，每次爆炸都是学习。SpaceX有句内部格言："如果你没有炸过东西，说明你还不够努力。"</p>
+            </div>
+
+            <!-- ICC 赛事思维预演 -->
+            <h2>【💡 创客思考】</h2>
+            <ul>
+                <li><strong>拆解与重构：</strong>如果你要做一个"看起来很贵但没人知道为什么贵"的东西，你会怎么用第一性原理去拆解它的成本？比如一个3000块的手机，其实材料成本是多少？</li>
+                <li><strong>愿力 vs 资源：</strong>你有过那种"所有人都说做不到、但你就是想试试"的事吗？后来怎么样了？你觉得什么力量支撑你走下去？</li>
+                <li><strong>失败的勇气：</strong>火箭炸了三次还能继续，你觉得这种"不怕失败"的勇气是从哪里来的？如果连续三次失败，你会放弃吗？</li>
+            </ul>
+
+            <!-- 思考问题 -->
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    💬 留给你的问题：如果你是下一个马斯克
+                </div>
+                <p>如果你有100万人民币、一个团队和20年时间，你会做什么"不可能"的事？是造一艘潜水艇探索马里亚纳海沟？是做一个能飞上平流层的个人飞行器？还是用AI解决垃圾污染？</p>
+                <p style="margin-top: 8px;"><strong>关键不是"能不能做成"，而是"值不值得做"。</strong>真正改变世界的人，不是那些"知道怎么做"的人——而是那些"不知道怎么做但就是不肯放弃"的人。</p>
+            </div>
+
+            <!-- 更多视频推荐 -->
+            <h2>【🎬 更多推荐视频】</h2>
+            <div class="video-grid">
+                <div class="hand-drawn bg-white p-2">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1SECmBoEH5&page=1&high_quality=1&danmaku=0&autoplay=0"
+                        width="100%" height="220" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                    </iframe>
+                </div>
+                <div class="hand-drawn bg-white p-2">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1vW411J7QA&page=1&high_quality=1&danmaku=0&autoplay=0"
+                        width="100%" height="220" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                    </iframe>
+                </div>
+            </div>
+            <p class="text-sm text-muted mt-2 mb-2 text-center">
+                📺 左：<a href="https://www.bilibili.com/video/BV1SECmBoEH5" target="_blank" class="underline">8分钟看马斯克艰辛的13年</a> · 右：<a href="https://www.bilibili.com/video/BV1vW411J7QA" target="_blank" class="underline">猎鹰一号首飞失败（2006）</a>
+            </p>
+
+            <!-- 原文出处 -->
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://www.cnbc.com/2026/06/13/from-10percent-chance-of-success-to-2-trillion-spacexs-historic-ipo.html" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">
+                    From 10% chance of success to $2 trillion market cap: SpaceX's historic IPO →</a>
+                <a href="https://spacenews.com/spacex-shares-rise-nearly-20-in-historic-ipo/" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">
+                    SpaceX shares rise nearly 20% in historic IPO →</a>
+                <div class="text-sm text-muted">SpaceX上市：从10%成功概率到2.1万亿美元市值</div>
+                <div class="font-mono text-xs text-muted mt-2">整理来源：CNBC / Reuters / SpaceNews · 2026-06-12/13</div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+            <div class="font-mono text-sm text-muted">MG Maker Daily · 给小小创客的科技新闻</div>
+            <div class="font-mono text-xs text-muted mt-2">每天3分钟，用科技连接未来</div>
+        </div>
+    </footer>
+</body>
+</html>
