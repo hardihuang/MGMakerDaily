@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贝佐斯豪掷120亿美元打造"通用工程师"AI — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'robot': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .date-stamp { font-family: 'Courier Prime', monospace; border: 2px solid #1a1a1a; padding: 8px 16px; display: inline-block; transform: rotate(-2deg); background: #fff; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; }
+        .article-content h3 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #ff6b35; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #333; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.75rem; line-height: 1.7; }
+        .article-content strong { font-weight: 600; color: #1a1a1a; }
+        .keyword-box { background: #fff; border: 2px solid #1a1a1a; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 3px 3px 0 #1a1a1a; }
+        .keyword-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff6b35; }
+        .question-box { background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%); border: 2px solid #ff6b35; padding: 1.5rem; margin: 1.5rem 0; }
+        .question-title { font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: #ff6b35; display: flex; align-items: center; gap: 0.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Courier Prime', monospace; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; transition: all 0.15s ease; }
+        .back-link:hover { background: #1a1a1a; color: #fff; padding: 2px 6px; }
+    </style>
+</head>
+<body class="font-body min-h-screen">
+    <!-- Header -->
+    <header class="border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="w-12 h-12 bg-accent text-white flex items-center justify-center font-display font-bold text-xl hand-drawn">M</a>
+                    <div>
+                        <a href="index.html" class="font-display font-bold text-3xl tracking-tight hover:text-accent transition-colors">MG Maker Daily</a>
+                        <p class="text-muted font-mono text-sm">给小小创客的科技新闻 · 每天3分钟</p>
+                    </div>
+                </div>
+                <div class="date-stamp">2026.06.13</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-ink sticky top-0 bg-paper z-50">
+        <div class="w-full px-6 py-4">
+            <a href="index.html" class="nav-pill">← 返回首页</a>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <!-- Article Header -->
+        <div class="mb-8">
+            <span class="category-pill" style="color: #8b5cf6;">🧠 AI</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-06-13</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆 · 来源：TechCrunch</div>
+            <h1 class="font-display font-bold text-3xl leading-tight mb-4">贝佐斯豪掷120亿美元打造"通用工程师"AI，物理世界将被重塑？</h1>
+            <p class="text-muted text-lg leading-relaxed">亚马逊创始人贝佐斯联合前Google生命科学高管创立AI公司Prometheus，融资120亿美元、估值410亿，目标打造"通用工程师"——一种能自动设计喷气发动机到新药分子的超级AI。贝佐斯说：AI会让人们不再需要加班，双职工家庭变成单职工就够了。</p>
+        </div>
+
+        <!-- Video -->
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV18kEY6tEvK&page=1&high_quality=1&danmaku=0&autoplay=0"
+                    width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">
+                📺 视频：<a href="https://www.bilibili.com/video/BV18kEY6tEvK" target="_blank" class="external-link">美国最大机器人数据工厂曝光，100台机器人正在悄悄进化 - 哔哩哔哩</a>
+            </p>
+            <div style="background: #fffbe6; border: 2px dashed #f59e0b; padding: 12px; margin-top: 12px; font-size: 0.9rem;">
+                <strong>👀 看视频时注意这3个问题：</strong><br>
+                ① 视频里的机器人和人类工人各自在做什么？<br>
+                ② 为什么这些机器人需要"数据"才能工作？数据从哪里来？<br>
+                ③ 如果AI可以设计出更好的工厂，人类工程师的角色会变成什么？
+            </div>
+        </div>
+
+        <!-- Article Body -->
+        <article class="article-content">
+            <!-- 前沿聚焦 -->
+            <h2>【🔍 前沿聚焦】</h2>
+            <p><strong>背景痛点：</strong>设计一台喷气发动机需要几十名工程师花好几年时间，设计一种新药可能要耗费10年以上的研发周期。人类的脑力——即使是世界上最聪明的工程师——也有天花板。随着科技产品越来越复杂，传统"人脑设计+反复试验"的模式已经逼近极限：成本越来越高、周期越来越长、试错成本动辄上亿美金。</p>
+
+            <p><strong>技术突破：</strong>这就是Prometheus的野心——打造一个叫"通用工程师"（Artificial General Engineer）的超级AI系统。这个AI不是写写诗或者聊聊天的，它要能亲自设计并制造复杂的物理系统。从喷气发动机到新药分子，从建筑结构到电子电路，它要让AI像熟练工程师一样理解物理世界、画出设计图、模拟测试、优化迭代，然后直接交给工厂生产。</p>
+
+            <p>这次贝佐斯（Jeff Bezos）联合前Google生命科学公司Verily的联合创始人Vik Bajaj一起创业，一口气融了120亿美元（约人民币870亿元），公司估值冲到410亿美元。投资方包括了摩根大通、高盛、黑石等华尔街巨头——他们显然不只是想投一家软件公司。</p>
+
+            <p><strong>贝佐斯的"反常识"观点：</strong>当大多数科技大佬都在担心AI抢走人类工作时，贝佐斯却说了一个完全不同的话——他管它叫"劳动力稀缺"（labor scarcity）。他的逻辑很"贝佐斯式"：AI带来的生产力提升会让经济规模变大，大家的生活水平会提高。双职工家庭可能会变成一个人工作就够了，现在需要加班的人可能就不用加班了。他相信"显著的生产力提升会提高生活水平"。</p>
+
+            <p><strong>为什么这次不一样？</strong>Prometheus并不是普通AI公司。它做的是"物理AI"（Physical AI）——不是帮人写代码或画图，而是实实在在地改造现实世界。投资圈最近疯狂追捧物理AI，因为相比纯软件，物理世界有天然的护城河：造工厂、建供应链、管理复杂的制造流程——这些"脏活累活"不是几行代码就能搞定的。</p>
+
+            <p>目前Prometheus有150名员工，分布在旧金山、伦敦和苏黎世。公司对具体产品的细节守口如瓶，但贝佐斯透露大部分资金会投入到巨量计算资源上——训练一个能"设计整个世界"的AI，需要的算力恐怕是天文数字。</p>
+
+            <!-- 核心科技关键词 -->
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 核心科技关键词</div>
+                <p><strong>通用工程师 (Artificial General Engineer / AGE)</strong></p>
+                <p>一种能自动完成物理产品设计和制造全流程的AI系统。不同于"通用人工智能"（AGI）追求全面超越人类智能，AGE更聚焦在工程领域——理解物理规律、设计复杂系统、仿真测试、输出制造方案。简单理解：就像有一个超级工程师团队7×24小时不睡觉，帮你设计一台新发动机。</p>
+                <p style="margin-top: 1rem;"><strong>物理AI (Physical AI)</strong></p>
+                <p>与只能处理文字、图片的"数字AI"不同，物理AI能理解真实世界的物理规律——重力、摩擦力、材料强度、热传导……它不只是在电脑里画图，还能知道"这个材料在高温下会不会变形""这样设计会不会被风吹断"。英伟达CEO黄仁勋说这是AI的下一个浪潮。</p>
+            </div>
+
+            <!-- ICC 赛事思维预演 -->
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li><strong>定义与调研：</strong>除了喷气发动机和新药设计，你觉得还有哪些产品/领域急需"通用工程师"AI来加速设计？建筑师设计大楼？厨师研发新菜谱？服装设计师设计新衣服？这些领域有什么共同点？</li>
+                <li><strong>创新与差异：</strong>贝佐斯说AI会让人们"不用加班"——你觉得这种"乐观派"的观点对吗？相比于马斯克（认为AI可能带来危险）、Altman（认为AI需要监管），贝佐斯的观点有什么独特之处？</li>
+                <li><strong>测试与迭代：</strong>如果AI设计了一座桥梁，但建成后发现结构有问题，责任应该由谁来承担？AI公司？使用AI的工程师？你会如何设计"AI设计+人类审核"的安全流程？</li>
+            </ul>
+
+            <!-- 思考问题 -->
+            <div class="question-box">
+                <div class="question-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    💬 留给你的问题：科技向善
+                </div>
+                <p>如果AI真的成为"通用工程师"，可以设计出比人类更好的产品，那人类工程师还应该做什么？是监督AI、提供创意方向、还是做AI做不到的事情（比如理解用户的情感和需求）？如果你是未来的工程师，你会如何定位自己的角色——和AI竞争，还是和AI合作？</p>
+            </div>
+
+            <!-- 原文出处 -->
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://techcrunch.com/2026/06/11/jeff-bezoss-prometheus-raises-12b-to-build-an-artificial-general-engineer-for-the-physical-world/" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">Jeff Bezos's Prometheus raises $12B to build an 'artificial general engineer' for the physical world →</a>
+                <div class="text-sm text-muted">贝佐斯的Prometheus融资120亿美元，为物理世界打造"通用工程师"</div>
+                <div class="font-mono text-xs text-muted mt-2">来源：TechCrunch · 2026-06-12</div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+            <div class="font-mono text-sm text-muted">MG Maker Daily · 给小小创客的科技新闻</div>
+            <div class="font-mono text-xs text-muted mt-2">每天3分钟，用科技连接未来</div>
+        </div>
+    </footer>
+</body>
+</html>
