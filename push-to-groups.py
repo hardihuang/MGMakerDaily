@@ -13,7 +13,8 @@ APP_SECRET = "l3SMAbmc8ag9RQ4UWPR7hblV5MFCw0pd"
 BASE_URL = "https://open.feishu.cn/open-apis"
 
 # 排除的群关键词（非班级群不推送）
-EXCLUDE_KEYWORDS = ["研发", "项目组", "ICC-", "反馈群", "服务群", "沟通群", "打印", "对接", "商城"]
+# ❌ 2026-06-13: 按Hardi要求移除排除规则，Bot所在的所有群都推送
+EXCLUDE_KEYWORDS = []
 
 def get_token():
     resp = requests.post(
@@ -58,10 +59,7 @@ def get_bot_groups(token):
     return groups
 
 def should_push(group_name):
-    """判断是否应该推送到该群"""
-    for kw in EXCLUDE_KEYWORDS:
-        if kw in group_name:
-            return False
+    """判断是否应该推送到该群 - 按Hardi要求，所有群都推送"""
     return True
 
 def send_card(token, chat_id, article):
@@ -127,18 +125,12 @@ def send_card(token, chat_id, article):
     return data.get("code") == 0, data
 
 def main():
-    # 支持命令行传入文章信息
-    if len(sys.argv) > 1:
-        article = json.loads(sys.argv[1])
-    else:
-        article = {
-            "title": "东京人形机器人峰会：机器人会跳舞穿针，中国品牌抢尽风头",
-            "date": "2026-06-04",
-            "summary": "亚洲首届人形机器人峰会在东京举办！本田灵巧手能穿针引线，中国Mini Pi机器人会跳舞卖萌只卖5500美元——日本发明了机器人，中国企业却把它做成了爆款。",
-            "url": "https://hardihuang.github.io/MGMakerDaily/article-humanoids-summit-tokyo.html",
-            "video_url": "https://www.bilibili.com/video/BV1QiVn6LEBQ",
-            "question": "日本发明了人形机器人，中国企业却把它做成了爆款——你觉得\"先发明\"和\"先量产\"哪个更重要？"
-        }
+    # 必须传文章 JSON 参数，防止误发旧文章
+    if len(sys.argv) < 2:
+        print("❌ 错误：必须传入文章 JSON 参数")
+        print("用法: python3 push-to-groups.py '{\"title\":\"标题\",\"date\":\"2026-06-10\",\"summary\":\"摘要\",\"url\":\"https://...\",\"video_url\":\"https://...\",\"question\":\"思考问题\"}'")
+        sys.exit(1)
+    article = json.loads(sys.argv[1])
 
     token = get_token()
     print(f"🔑 Token 获取成功")
