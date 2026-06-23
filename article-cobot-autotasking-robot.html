@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>这个机器人会「偷学」你的技能！不需要编程 — MG Maker Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=Courier+Prime&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'Noto Sans SC', 'sans-serif'],
+                        'body': ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        'mono': ['Courier Prime', 'monospace'],
+                    },
+                    colors: {
+                        'paper': '#fafaf8',
+                        'ink': '#1a1a1a',
+                        'accent': '#ff6b35',
+                        'muted': '#6b6b6b',
+                        'robot': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf8; color: #1a1a1a; }
+        .hand-drawn { border: 2px solid #1a1a1a; box-shadow: 3px 3px 0 #1a1a1a; transition: all 0.15s ease; }
+        .hand-drawn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #1a1a1a; }
+        .category-pill { border: 1.5px solid currentColor; padding: 2px 10px; font-family: 'Courier Prime', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; }
+        .article-content h2 { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.35rem; margin-top: 2rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid #1a1a1a; display: inline-block; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; font-size: 1rem; }
+        .article-content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .keyword-box { background: #fffbe6; border: 2px dashed #f59e0b; padding: 20px; margin: 24px 0; border-radius: 4px; }
+        .keyword-title { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; color: #1a1a1a; }
+        .keyword-box p { margin-bottom: 10px; line-height: 1.7; font-size: 0.95rem; }
+        .question-box { background: #f0f7ff; border: 2px dashed #3b82f6; padding: 20px; margin: 24px 0; border-radius: 4px; }
+        .question-title { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .question-box p { line-height: 1.7; font-size: 0.95rem; color: #1a1a1a; }
+        .source-box { font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: #6b6b6b; }
+        .source-box a { color: #1a1a1a; font-weight: 500; }
+        .source-box a:hover { color: #ff6b35; }
+        .nav-scroll { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+        .nav-pill { border: 2px solid #1a1a1a; background: #fff; padding: 8px 16px; font-family: 'Courier Prime', monospace; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; flex-shrink: 0; }
+        .nav-pill:hover { background: #1a1a1a; color: #fff; }
+        .nav-pill.active { background: #1a1a1a; color: #fff; }
+        @media (min-width: 1024px) { .nav-scroll { overflow-x: visible; flex-wrap: wrap; } }
+        @media (max-width: 640px) {
+            .article-content h2 { font-size: 1.15rem; }
+            .article-content p { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="border-b-2 border-ink bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center gap-3 shrink-0">
+                <span class="text-2xl">⚡</span>
+                <span class="font-display font-bold text-lg hidden sm:inline">MG Maker Daily</span>
+            </a>
+            <div class="nav-scroll flex-1 mx-2 sm:mx-4">
+                <button class="nav-pill" data-filter="all">全部</button>
+                <button class="nav-pill" data-filter="AI">AI</button>
+                <button class="nav-pill" data-filter="机器人">机器人</button>
+                <button class="nav-pill" data-filter="硬件">硬件</button>
+                <button class="nav-pill" data-filter="太空">太空</button>
+                <button class="nav-pill" data-filter="生物">生物</button>
+                <button class="nav-pill" data-filter="能源">能源</button>
+                <button class="nav-pill" data-filter="材料">材料</button>
+            </div>
+            <div class="font-display font-bold text-lg sm:text-xl">MG MD</div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="max-w-3xl mx-auto px-6 py-10">
+        <div class="mb-8">
+            <span class="category-pill" style="color: #f59e0b;">🤖 机器人</span>
+            <div class="font-mono text-sm text-muted mt-3 mb-2">2026-06-23</div>
+            <div class="font-mono text-sm text-muted mb-4">文章整理：@MG豆豆 · 来源：The Robot Report</div>
+            <h1 class="font-display font-bold text-3xl leading-tight">这个机器人会「偷学」你的技能！不需要编程</h1>
+            <p class="text-muted text-lg leading-relaxed mt-3">
+                当机器人可以像人类一样通过观察来学习新技能，编程这门「手艺」还好使吗？
+            </p>
+        </div>
+
+        <!-- Video 1: Bilibili 机器人相关 -->
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1SVvxBGEXE&page=1&high_quality=1&danmaku=0&autoplay=0"
+                    width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">
+                📺 视频：<a href="https://www.bilibili.com/video/BV1SVvxBGEXE" target="_blank" class="font-medium underline">小白必看 2025年我手搓AI机器人经验总结分享 - 哔哩哔哩</a>
+            </p>
+            <div style="background: #fffbe6; border: 2px dashed #f59e0b; padding: 12px; margin-top: 12px; font-size: 0.9rem;">
+                <strong>👀 看视频时注意这3个问题：</strong><br>
+                ① 这个UP主是自己一个人做出机器人的，你觉得如果换成AI帮他，能快多少？<br>
+                ② 机器人从「不会」到「会」一个动作，需要经历哪些阶段？<br>
+                ③ 视频里的机器人用了哪些传感器来感知周围环境？
+            </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="mb-8">
+            <div class="hand-drawn bg-white p-2">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1oA7A6UERg&page=1&high_quality=1&danmaku=0&autoplay=0"
+                    width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 4px; display: block;">
+                </iframe>
+            </div>
+            <p class="text-sm text-muted mt-3 text-center">
+                📺 视频：<a href="https://www.bilibili.com/video/BV1oA7A6UERg" target="_blank" class="font-medium underline">国产 AI 机器人 MOYA 震撼发布！仿真度 92% - 哔哩哔哩</a>
+            </p>
+            <div style="background: #fffbe6; border: 2px dashed #f59e0b; padding: 12px; margin-top: 12px; font-size: 0.9rem;">
+                <strong>👀 看视频时注意这3个问题：</strong><br>
+                ① 仿真度92%意味着什么？你觉得机器人最难模仿人类的哪些地方？<br>
+                ② 如果一台机器人能听懂你的话并自己学动作，它还需要人类「教」吗？<br>
+                ③ 这种机器人的核心技术跟文中提到的「autotasking」有什么相似之处？
+            </div>
+        </div>
+
+        <article class="article-content">
+
+            <h2>【🔍 前沿聚焦】</h2>
+            <p>
+                想象一下：你走进工厂，对着一个机器人说「帮我把这些箱子搬到那边的架子上」，然后你随手示范了一个动作——机器人看了一遍，就自己学会了一整个过程。
+            </p>
+            <p>
+                这不是科幻电影。美国机器人公司 <strong>Cobot</strong> 刚刚发布了他们的最新产品 <strong>Proxie Gen 2</strong>，带来了一项令人震撼的新功能——<strong>「自动任务发现」（autotasking）</strong>。这个功能让机器人可以通过观察人类操作，自主理解任务该怎么完成，然后主动去执行，完全不需要工程师写代码。
+            </p>
+            <p>
+                以前的工业机器人是「死脑筋」——一个动作需要工程师花几天甚至几周写几千行代码。但现在，一个拥有 AI 大脑的机器人只需要——<strong>看</strong>。它用摄像头观察人类的动作，用 AI 大模型理解任务逻辑，然后自己生成执行方案。整个过程，人类只需要「做一遍给它看」。
+            </p>
+
+            <h2>【🤖 它是怎么做到的？】</h2>
+            <p>
+                Proxie Gen 2 的秘密武器是三大 AI 技术的组合：
+            </p>
+            <ul>
+                <li><strong>计算机视觉</strong>：通过多个摄像头实时捕捉人类的手部动作、身体姿态和操作对象的位置；</li>
+                <li><strong>模仿学习（Imitation Learning）</strong>：就像你看别人游泳然后自己试着游——AI 模型从人类示范中提取关键动作模式；</li>
+                <li><strong>自主决策引擎</strong>：学会动作后，机器人能自主判断在什么情况下用什么动作，甚至能适应环境的变化（比如箱子换了个位置，它也能自己调整）。</li>
+            </ul>
+            <p>
+                这背后用的是目前最前沿的 <strong>foundation model（基础模型）</strong> 技术——跟 ChatGPT、Claude 这类大语言模型是同一个技术家族，只是它的「语言」不是文字，而是物理世界的动作和操控。
+            </p>
+
+            <h2>【🏭 这为什么重要？】</h2>
+            <p>
+                目前全球制造业面临巨大的劳动力缺口。传统工业机器人的最大问题是部署成本太高——需要专业的机器人工程师、漫长的编程调试周期、固定的作业流程。
+            </p>
+            <p>
+                Proxie Gen 2 的出现，意味着一个普通工人就可以「教」机器人新任务。不需要编程经验，不需要等工程师来调试。这会让机器人的部署速度从「几个月」缩短到「几个小时」。
+            </p>
+            <p>
+                Cobot 公司表示，这个功能主要用于工厂仓库、物流分拣等重复性场景。但背后的技术逻辑，跟我们在 OPC 营队学的 <strong>vibe coding</strong> 有着异曲同工之妙——<strong>把需求告诉 AI，AI 帮你把复杂的事变简单</strong>。只不过这里「告诉」的方式不是说话，而是做一遍给它看。
+            </p>
+
+            <!-- 关键词 -->
+            <div class="keyword-box">
+                <div class="keyword-title">🔑 核心科技关键词</div>
+                <p><strong>Autotasking / 自动任务发现</strong></p>
+                <p>机器人的「自学模式」。传统机器人需要工程师逐行编程才能学会一个动作；具备 autotasking 能力的机器人，可以通过摄像头观察人类的操作示范，自主理解任务目标，然后自己规划执行步骤。就像你看了一遍蛋糕教学视频就能自己烤出来——只是机器人做得更快、更精准。</p>
+                <p><strong>Imitation Learning / 模仿学习</strong></p>
+                <p>一种让 AI 通过观察人类示范来学习技能的方法。人类在做动作时，AI 模型会记录关键数据（手的轨迹、力度、角度等），然后自己练习直到掌握。你教狗「坐下」的时候也是用这个逻辑——先示范，再奖励，重复到它学会。</p>
+                <p><strong>Foundation Model / 基础模型</strong></p>
+                <p>大规模预训练的 AI 模型，可以适应多种不同的任务。GPT 和 Claude 是「文字版」基础模型——你问它什么问题它都能答。机器人领域的 foundation model 是「动作版」——给它看不同的任务示范，它都能学会处理。核心思想是一样的：先在大规模数据上训练出一个「通才」，再针对具体任务做少量调整。</p>
+            </div>
+
+            <!-- ICC 预演 -->
+            <h2>【💡 创科启发：ICC 赛事思维预演】</h2>
+            <ul>
+                <li><strong>定义与调研：</strong>你身边有没有「需要反复教别人做」的事情（比如爸妈教你叠被子、老师教你解题步骤）？如果用机器人来替代教学，你觉得什么场景最适合先用上 autotasking 技术？</li>
+                <li><strong>创新与差异：</strong>如果你的团队要做一个「会自己学习的机器人」项目，跟 Cobot 的方案相比，你能想到更巧妙的方法吗？比如不用摄像头，用触觉？或者让机器人从 YouTube 视频里学习？</li>
+                <li><strong>测试与迭代：</strong>假设你在 OPC 营队里做了一个「会学习的小机械臂」原型，你怎么测试它学得对不对？如果它学错了动作，你怎么让它修正？（提示：想想你教别人的时候，对方做错了你怎么纠正）</li>
+            </ul>
+
+            <!-- 思考问题 -->
+            <div class="question-box">
+                <div class="question-title">
+                    💬 留给你的问题：科技向善
+                </div>
+                <p>
+                    如果未来机器人可以通过观察任何人来学习技能，你觉得会带来什么问题？比如：<br><br>
+                    <strong>①</strong> 如果一个坏人故意做危险动作让机器人学，怎么办？<br>
+                    <strong>②</strong> 如果机器人学会了一个人的工作技能，这个人会不会失业？<br>
+                    <strong>③</strong> 你觉得什么样的「技能」应该不让机器人学，什么样的可以放心让它学？<br><br>
+                    科技不是变出来的，是选择出来的。你知道得越多，选择就越有力量。
+                </p>
+            </div>
+
+            <!-- 原文出处 -->
+            <div class="mt-8 pt-6 border-t-2 border-ink/10">
+                <div class="font-mono text-xs text-muted mb-2">原文出处</div>
+                <a href="https://www.therobotreport.com/cobots-proxie-gen-2-robot-adds-autotasking-mobile-manipulation/" target="_blank" class="text-ink hover:text-accent transition-colors font-medium block mb-1">Cobot's Proxie Gen 2 robot adds autotasking, mobile manipulation →</a>
+                <div class="text-sm text-muted">Cobot Proxie Gen 2：自动任务发现 + 移动操作能力</div>
+                <div class="font-mono text-xs text-muted mt-2">The Robot Report · 2026年6月22日</div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-ink mt-16 py-8 px-6">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="font-display font-bold text-xl mb-2">MG Maker Daily</div>
+            <div class="font-mono text-sm text-muted">将科技文明的种子播撒进每个孩子的心田</div>
+            <div class="font-mono text-xs text-muted mt-1">MG Space · 深圳</div>
+        </div>
+    </footer>
+</body>
+</html>
